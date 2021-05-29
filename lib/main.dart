@@ -12,15 +12,16 @@ class AvalonApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => UserModel(),
-        child: MaterialApp(
-          title: "Avalon",
-          home: MaterialApp(routes: {
-            '/': (context) => WelcomePage(),
-            '/main': (context) => MainPage(),
-            '/lobby': (context) => LobbyPage(),
-            '/settings': (context) => SettingsPage()
-          }),
-        ));
+      create: (context) => UserModel(),
+      child: MaterialApp(
+        title: "Avalon",
+        home: MaterialApp(routes: {
+          '/': (context) => WelcomePage(),
+          '/main': (context) => MainPage(),
+          '/lobby': (context) => LobbyPage(),
+          '/settings': (context) => SettingsPage()
+        }),
+      ),
+    );
   }
 }
