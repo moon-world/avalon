@@ -1,3 +1,4 @@
+import 'package:avalon/models/application_state.dart';
 import 'package:avalon/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +11,8 @@ class MainPage extends StatefulWidget {
 class _MainPage extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    var user = context.watch<UserModel>();
-    var username = user.username;
+    var appState = context.watch<ApplicationState>();
+    var username = appState.userName;
 
     return SafeArea(
       child: Material(

@@ -1,7 +1,9 @@
+import 'package:avalon/models/application_state.dart';
 import 'package:avalon/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import '../src/authentication.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -9,83 +11,60 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  String? _errorText;
-  bool _isDisabled = true;
+  bool _isDisabled = false;
 
   @override
   Widget build(BuildContext context) {
-    var user = context.read<UserModel>();
+    var appState = context.watch<ApplicationState>();
+    _isDisabled = !appState.loggedIn;
 
     return Material(
       child: Container(
         child: Column(
           children: [
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Image(
                 image: AssetImage('assets/images/gates_1.png'),
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Text(
-                "Welcome to Avalon",
-                style: TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'CinzelDecorative'),
-              ),
+            Text(
+              "Welcome to Avalon",
+              style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'CinzelDecorative'),
             ),
             Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: TextField(
-                  onSubmitted: (String text) {
-                    setState(() {
-                      if (text.length < 4) {
-                        _errorText = "Name must be longer then 3 characters.";
-                        _changeButtonState(true);
-                      } else {
-                        user.username = text;
-                        _changeButtonState(false);
-                        _errorText = null;
-                      }
-                    });
-                  },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Enter your name",
-                    errorText: _getErrorText(),
-                  ),
+              flex: 3,
+              child: Consumer<ApplicationState>(
+                builder: (context, appState, _) => Authentication(
+                  email: appState.email,
+                  loginState: appState.loginState,
+                  startLoginFlow: appState.startLoginFlow,
+                  verifyEmail: appState.verifyEmail,
+                  signInWithEmailAndPassword:
+                      appState.signInWithEmailAndPassword,
+                  cancelRegistration: appState.cancelRegistration,
+                  registerAccount: appState.registerAccount,
+                  signOut: appState.signOut,
                 ),
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 10.0, right: 10.0, bottom: 25.0),
-                child: ElevatedButton(
-                  onPressed: _isDisabled ? null : _navigate,
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.teal, minimumSize: Size(250.0, 50.0)),
-                  child: Text("Enter Avalon"),
-                ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 25.0),
+              child: ElevatedButton(
+                onPressed: _isDisabled ? null : _navigate,
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.teal, minimumSize: Size(250.0, 50.0)),
+                child: Text("Enter Avalon"),
               ),
             ),
           ],
         ),
       ),
     );
-  }
-
-  String? _getErrorText() {
-    return _errorText;
-  }
-
-  void _changeButtonState(bool state) {
-    _isDisabled = state;
   }
 
   void _navigate() {
