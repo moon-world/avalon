@@ -6,63 +6,70 @@ class LobbyPage extends StatefulWidget {
 }
 
 class _LobbyPageState extends State {
-  String dropdownValue = 'five';
+  int dropdownValue = 5;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return SafeArea(
+      child: Material(
         child: Scaffold(
-      appBar: AppBar(title: Text("Lobby number : ")),
-      body: Container(
-        child: Column(
-          children: [
-            Row(
+          appBar: AppBar(title: Text("Lobby number : ")),
+          body: Container(
+            child: Column(
               children: [
-                Expanded(
-                    child: Center(
+                Row(
+                  children: [
+                    Expanded(
+                      child: Center(
                         child: Text(
-                  "Number of players",
-                  style: TextStyle(fontSize: 20.0),
-                ))),
-                Expanded(
-                    child: Center(
+                          "Number of players",
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Center(
                         child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: DropdownButton<String>(
-                              value: dropdownValue,
-                              icon: const Icon(Icons.expand_more),
-                              iconSize: 34,
-                              elevation: 15,
-                              style: const TextStyle(
-                                  color: Colors.indigoAccent, fontSize: 20.0),
-                              underline: Container(
-                                height: 1,
-                                color: Colors.indigoAccent,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  dropdownValue = newValue!;
-                                });
-                              },
-                              items: <String>[
-                                'five',
-                                'six',
-                                'seven',
-                                'eight',
-                                'nine',
-                                'ten'
-                              ].map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                            ))))
+                          padding: const EdgeInsets.all(20.0),
+                          child: DropdownButton<int>(
+                            value: dropdownValue,
+                            icon: const Icon(Icons.expand_more),
+                            iconSize: 34,
+                            elevation: 15,
+                            style: const TextStyle(
+                                color: Colors.indigoAccent, fontSize: 20.0),
+                            underline: Container(
+                              height: 1,
+                              color: Colors.indigoAccent,
+                            ),
+                            onChanged: (int? newValue) {
+                              setState(() {
+                                dropdownValue = newValue!;
+                              });
+                            },
+                            items: <int>[
+                              5,
+                              6,
+                              7,
+                              8,
+                              9,
+                            ].map<DropdownMenuItem<int>>((int value) {
+                              return DropdownMenuItem<int>(
+                                value: value,
+                                child: Text('$value'),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
-    ));
+    );
   }
 }
