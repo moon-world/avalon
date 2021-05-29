@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "947375020306",
+    "project_id": "the-ravalon",
+    "storage_bucket": "the-ravalon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947375020306:android:616771f117581eba273bcb",
+        "android_client_info": {
+          "package_name": "com.moon.avalon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947375020306-pqgoah39bc3gq24gvnvaf940igmj9l3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAVySpmGPKhAYEELDMPb5WKY2DNmJaqw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947375020306-pqgoah39bc3gq24gvnvaf940igmj9l3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
