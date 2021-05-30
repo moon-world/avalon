@@ -76,12 +76,18 @@ class _MainPage extends State<MainPage> {
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(context, 'Cancel'),
-                                          child: const Text('Cancel'), // Need to change this~
+                                          child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Text('Cancel'),
+                                          ), // Need to change this~
                                         ),
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               context, 'Enter Room'),
-                                          child: const Text('Enter Room'),
+                                          child: Align(
+                                            alignment: Alignment.bottomLeft,
+                                            child: Text('Enter Room'),
+                                          ),
                                         ),
                                       ],
                                     ))
