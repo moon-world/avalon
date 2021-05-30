@@ -76,7 +76,7 @@ class _MainPage extends State<MainPage> {
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(context, 'Cancel'),
-                                          child: const Text('Cancel'),
+                                          child: const Text('Cancel'), // Need to change this~
                                         ),
                                         TextButton(
                                           onPressed: () => Navigator.pop(
@@ -105,7 +105,9 @@ class _MainPage extends State<MainPage> {
                           primary: Colors.cyan.shade400,
                           minimumSize: Size(250.0, 50.0)),
                       child: Text("Exit"),
-                      onPressed: () => {exit}),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/');
+                      }),
                 ),
               ],
             ),
