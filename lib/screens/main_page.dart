@@ -13,6 +13,7 @@ class _MainPage extends State<MainPage> {
   Widget build(BuildContext context) {
     var appState = context.watch<ApplicationState>();
     var username = appState.userName;
+    final TextEditingController _textEditController = TextEditingController();
 
     return SafeArea(
       child: Material(
@@ -55,7 +56,36 @@ class _MainPage extends State<MainPage> {
                           primary: Colors.cyan.shade400,
                           minimumSize: Size(250.0, 50.0)),
                       child: Text("Enter Lobby"),
-                      onPressed: () => {enterLobby}),
+                      onPressed: () => {
+                            showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                      title: const Text('Enter Room Pass'),
+                                      content: const Text('Enter numbers'),
+                                      actions: <Widget>[
+                                        TextFormField(
+                                          controller: _textEditController,
+                                          validator: (value) {
+                                            return value!.isEmpty
+                                                ? null
+                                                : "Invalid";
+                                          },
+                                          decoration: InputDecoration(
+                                              hintText: "Enter Room Number"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, 'Cancel'),
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              context, 'Enter Room'),
+                                          child: const Text('Enter Room'),
+                                        ),
+                                      ],
+                                    ))
+                          }),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
