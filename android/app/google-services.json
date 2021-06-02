@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "947375020306",
+    "firebase_url": "https://the-ravalon-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "the-ravalon",
     "storage_bucket": "the-ravalon.appspot.com"
   },

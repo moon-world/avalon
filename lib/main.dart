@@ -1,4 +1,5 @@
 import 'package:avalon/screens/welcome_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './screens/main_page.dart';
 import './screens/settings_page.dart';
@@ -7,7 +8,11 @@ import 'package:provider/provider.dart';
 import 'models/application_state.dart';
 import 'models/user_model.dart';
 
-void main() => runApp(AvalonApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(AvalonApp());
+}
 
 class AvalonApp extends StatelessWidget {
   @override
