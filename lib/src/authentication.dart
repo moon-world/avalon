@@ -253,7 +253,7 @@ class _RegisterFormState extends State<RegisterForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextFormField(
                     controller: _emailController,
                     decoration: const InputDecoration(
@@ -267,39 +267,48 @@ class _RegisterFormState extends State<RegisterForm> {
                     },
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _displayNameController,
-                    decoration: const InputDecoration(
-                      hintText: 'First & last name',
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: TextFormField(
+                          controller: _displayNameController,
+                          decoration: const InputDecoration(
+                            hintText: 'Nickname',
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter your account name';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your account name';
-                      }
-                      return null;
-                    },
-                  ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: TextFormField(
+                          controller: _passwordController,
+                          decoration: const InputDecoration(
+                            hintText: 'Password',
+                          ),
+                          obscureText: true,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter your password';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: TextFormField(
-                    controller: _passwordController,
-                    decoration: const InputDecoration(
-                      hintText: 'Password',
-                    ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter your password';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -368,7 +377,7 @@ class _PasswordFormState extends State<PasswordForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
                     controller: _emailController,
                     decoration: const InputDecoration(
@@ -383,7 +392,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
                     controller: _passwordController,
                     decoration: const InputDecoration(
@@ -399,7 +408,7 @@ class _PasswordFormState extends State<PasswordForm> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
