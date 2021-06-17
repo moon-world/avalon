@@ -149,7 +149,6 @@ class _MainPage extends State<MainPage> {
 enum LobbyState { maxPlayers, notExist, failed, none }
 
 class EnterLobbyPopup extends StatelessWidget {
-  final TextEditingController _textEditController = TextEditingController();
   final LobbyState lobbyState;
 
   EnterLobbyPopup(this.lobbyState);

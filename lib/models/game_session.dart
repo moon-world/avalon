@@ -9,8 +9,8 @@ part 'game_session.g.dart';
 class GameSession {
   String? sessionId;
   String? sessionDbUId;
-  int? numberOfPlayers;
-  int? numberOfMinions;
+  int numberOfPlayers = 5;
+  int numberOfMinions = 2;
   List<Player>? players;
   List<Character>? characters;
   List<Quest>? quests;

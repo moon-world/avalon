@@ -1,3 +1,4 @@
+import 'package:avalon/models/player_model.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -60,4 +61,39 @@ class StyledButton extends StatelessWidget {
         onPressed: onPressed,
         child: child,
       );
+}
+
+class PlayersTable extends StatelessWidget {
+  const PlayersTable({required this.players});
+  final List<Player> players;
+
+  @override
+  Widget build(BuildContext context) {
+    var playersNames = [];
+    for (var player in players) {
+      playersNames.add(player.name);
+    }
+    return Column(
+      children: [
+        Text("Players",
+            style: TextStyle(
+                fontSize: 24.0,
+                fontFamily: 'CinzelDecorative',
+                fontWeight: FontWeight.w700)),
+        Container(
+          height: 150.0,
+          child: GridView.count(
+              crossAxisCount: 2,
+              childAspectRatio: 8.0,
+              children: [
+                for (var name in playersNames)
+                  Center(
+                      child: Text(name,
+                          style:
+                              TextStyle(fontSize: 20.0, fontFamily: 'Roboto'))),
+              ]),
+        ),
+      ],
+    );
+  }
 }

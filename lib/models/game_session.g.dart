@@ -10,8 +10,8 @@ GameSession _$GameSessionFromJson(Map json) {
   return GameSession()
     ..sessionId = json['sessionId'] as String?
     ..sessionDbUId = json['sessionDbUId'] as String?
-    ..numberOfPlayers = json['numberOfPlayers'] as int?
-    ..numberOfMinions = json['numberOfMinions'] as int?
+    ..numberOfPlayers = json['numberOfPlayers'] as int
+    ..numberOfMinions = json['numberOfMinions'] as int
     ..players = (json['players'] as List<dynamic>?)
         ?.map((e) => Player.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList()

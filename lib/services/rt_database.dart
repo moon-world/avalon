@@ -17,24 +17,24 @@ class RealTimeDataBase extends ChangeNotifier {
 
   Future<void> init() async {}
 
-  GameSession? _gameSession;
-  DatabaseReference? _gameSessionReference;
+  GameSession? gameSession;
+  late DatabaseReference _gameSessionReference;
   late StreamSubscription<Event> _gameSessionSubscription;
 
   DatabaseError? _error;
 
   // ignore: non_constant_identifier_names
   bool createLobby(Player player) {
-    var id = databaseReference.child('game_sessions').push();
-
-    _gameSession = new GameSession();
-    _gameSession!.sessionId = createLobbyUID();
-    _gameSession!.sessionDbUId = id.key;
-    _gameSession!.players = [];
-    _gameSession!.players!.add(player);
-    var jsonString = jsonEncode(_gameSession);
+    _gameSessionReference = databaseReference.child('game_sessions').push();
+    gameSession = new GameSession();
+    gameSession!.sessionId = createLobbyUID();
+    gameSession!.sessionDbUId = _gameSessionReference.key;
+    gameSession!.players = [];
+    gameSession!.players!.add(player);
+    var jsonString = jsonEncode(gameSession);
     Map<String, dynamic> _game = jsonDecode(jsonString);
-    id.set(_game);
+    _gameSessionReference.set(_game);
+    subscribeToGameChanges();
     return true;
   }
 
@@ -52,23 +52,23 @@ class RealTimeDataBase extends ChangeNotifier {
         var snapshotValue = new Map<String, dynamic>.from(snapshot.value);
         snapshotValue.forEach((key, value) {
           var mappedValue = new Map<String, dynamic>.from(value);
-          _gameSession = GameSession.fromJson(mappedValue);
+          gameSession = GameSession.fromJson(mappedValue);
           _gameSessionReference =
-              sessions.child('${_gameSession!.sessionDbUId}');
+              sessions.child('${gameSession!.sessionDbUId}');
           subscribeToGameChanges();
         });
 
-        if (_gameSession == null) {
+        if (gameSession == null) {
           return "Failed enter the lobby.";
         }
         //check if there is space in lobby.
-        if (_gameSession!.players!.length > 9) {
+        if (gameSession!.players!.length >= gameSession!.numberOfPlayers) {
           return 'Lobby is full!';
         }
-        _gameSession!.players!.add(player);
-        var jsonString = jsonEncode(_gameSession);
+        gameSession!.players!.add(player);
+        var jsonString = jsonEncode(gameSession);
         Map<String, dynamic> _game = jsonDecode(jsonString);
-        _gameSessionReference!.set(_game);
+        _gameSessionReference.set(_game);
         return 'Entered';
       });
 
@@ -81,11 +81,12 @@ class RealTimeDataBase extends ChangeNotifier {
 
   void subscribeToGameChanges() {
     _gameSessionSubscription =
-        _gameSessionReference!.onValue.listen((Event event) {
+        _gameSessionReference.onValue.listen((Event event) {
       _error = null;
       var valueOfSession = new Map<String, dynamic>.from(event.snapshot.value);
       var mappedValue = new Map<String, dynamic>.from(valueOfSession);
-      _gameSession = GameSession.fromJson(mappedValue);
+      gameSession = GameSession.fromJson(mappedValue);
+      notifyListeners();
     }, onError: (Object o) {
       final DatabaseError error = o as DatabaseError;
       _error = error;
@@ -101,5 +102,11 @@ class RealTimeDataBase extends ChangeNotifier {
 
     return String.fromCharCodes(Iterable.generate(
         6, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+  }
+
+  void updateGameSession() {
+    var jsonString = jsonEncode(gameSession);
+    Map<String, dynamic> _game = jsonDecode(jsonString);
+    _gameSessionReference.set(_game);
   }
 }
