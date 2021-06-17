@@ -6,7 +6,7 @@ part of 'votes_track.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VotesTrack _$VotesTrackFromJson(Map<String, dynamic> json) {
+VotesTrack _$VotesTrackFromJson(Map json) {
   return VotesTrack(
     json['numberOfPlayers'] as int,
   )

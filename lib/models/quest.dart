@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'quest.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, anyMap: true)
 class Quest {
   late int questNumber;
   late int failsRequired;

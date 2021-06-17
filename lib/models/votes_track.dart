@@ -1,9 +1,8 @@
-import 'package:avalon/models/player_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'votes_track.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, anyMap: true)
 class VotesTrack {
   late Map<String, bool> votes;
   late int numberOfPlayers;
@@ -21,7 +20,7 @@ class VotesTrack {
     }
   }
 
-  AddVote(String playerName) {
+  addVote(String playerName) {
     votes.update(playerName, (value) => false);
   }
 

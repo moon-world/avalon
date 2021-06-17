@@ -1,5 +1,4 @@
 import 'package:avalon/models/application_state.dart';
-import 'package:avalon/models/user_model.dart';
 import 'package:avalon/services/rt_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,9 +9,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPage extends State<MainPage> {
+  final TextEditingController _textEditController = TextEditingController();
+  late RealTimeDataBase database;
+  late ApplicationState appState;
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<ApplicationState>();
+    appState = context.watch<ApplicationState>();
+    database = context.watch<RealTimeDataBase>();
     var username = appState.userName;
 
     return SafeArea(
@@ -49,7 +52,30 @@ class _MainPage extends State<MainPage> {
                     },
                   ),
                 ),
-                EnterLobbyPopup(),
+                Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 150.0,
+                          child: TextFormField(
+                            controller: _textEditController,
+                            validator: (value) {
+                              return value!.isEmpty ? null : "Invalid";
+                            },
+                            decoration:
+                                InputDecoration(hintText: "Enter Room Number"),
+                          ),
+                        ),
+                        IconButton(
+                            icon: const Icon(Icons.forward),
+                            tooltip: 'Enter Lobby',
+                            onPressed: () {
+                              enterLobby();
+                            }),
+                      ],
+                    )),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
@@ -82,69 +108,88 @@ class _MainPage extends State<MainPage> {
 
   createLobby() {
     try {
-      var rdb = new RealTimeDataBase();
-      UserModel user = new UserModel();
-      rdb.CreateLobby(user);
+      appState.player!.isLeader = true;
+      if (database.createLobby(appState.player!)) {
+        Navigator.pushNamed(context, '/lobby');
+      } else {
+        // TODO: show error message if lobby creation failed
+      }
     } catch (e) {
       print(e);
     }
-
-    Navigator.pushNamed(context, '/lobby');
   }
 
-  enterLobby() {}
+  enterLobby() async {
+    String result =
+        await database.enterLobby(_textEditController.text, appState.player!);
+    switch (result) {
+      case 'Entered':
+        Navigator.pushNamed(context, '/lobby');
+        break;
+      case 'Lobby is full!':
+        var lobbyPopup = new EnterLobbyPopup(LobbyState.maxPlayers);
+        showDialog(
+            context: context, builder: (BuildContext context) => lobbyPopup);
+        break;
+      case 'There is no such room.':
+        var lobbyPopup = new EnterLobbyPopup(LobbyState.notExist);
+        showDialog(
+            context: context, builder: (BuildContext context) => lobbyPopup);
+        break;
+      default:
+
+      // TODO: implement pop up with message to User
+    }
+  }
+
   navigateToSettings() {}
   exit() {}
 }
 
-class EnterLobbyPopup extends StatefulWidget {
-  @override
-  _EnterLobbyPopup createState() => _EnterLobbyPopup();
-}
+enum LobbyState { maxPlayers, notExist, failed, none }
 
-class _EnterLobbyPopup extends State<EnterLobbyPopup> {
+class EnterLobbyPopup extends StatelessWidget {
   final TextEditingController _textEditController = TextEditingController();
+  final LobbyState lobbyState;
+
+  EnterLobbyPopup(this.lobbyState);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              primary: Colors.cyan.shade400, minimumSize: Size(250.0, 50.0)),
-          child: Text("Enter Lobby"),
-          onPressed: () => {
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Enter Room Pass'),
-                    content: const Text('Enter numbers'),
-                    actions: <Widget>[
-                      TextFormField(
-                        controller: _textEditController,
-                        validator: (value) {
-                          return value!.isEmpty ? null : "Invalid";
-                        },
-                        decoration:
-                            InputDecoration(hintText: "Enter Room Number"),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: Text('Cancel'),
-                        ), // Need to change this~
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Enter Room'),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text('Enter Room'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              }),
-    );
+    switch (lobbyState) {
+      case LobbyState.maxPlayers:
+        return AlertDialog(
+          title: const Text('Lobby is full!'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Text('Cancel'),
+              ), // Need to change this~
+            ),
+          ],
+        );
+      case LobbyState.notExist:
+        return AlertDialog(
+          title: const Text('Lobby does not exist!'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Text('Cancel'),
+              ), // Need to change this~
+            ),
+          ],
+        );
+      default:
+        return AlertDialog(
+          title: const Text('Failed entering lobby.'),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context), child: Text("Close")),
+          ],
+        );
+    }
   }
 }

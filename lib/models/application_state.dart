@@ -1,10 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:avalon/models/player_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../src/authentication.dart'; // new
-import '../src/widgets.dart';
 
 class ApplicationState extends ChangeNotifier {
   ApplicationState() {
@@ -32,6 +30,7 @@ class ApplicationState extends ChangeNotifier {
   String? userName;
   String? _email;
   String? get email => _email;
+  Player? player;
 
   void startLoginFlow() {
     _loginState = ApplicationLoginState.emailAddress;

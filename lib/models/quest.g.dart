@@ -6,14 +6,14 @@ part of 'quest.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Quest _$QuestFromJson(Map<String, dynamic> json) {
+Quest _$QuestFromJson(Map json) {
   return Quest(
     json['questNumber'] as int,
   )
     ..failsRequired = json['failsRequired'] as int
     ..failed = json['failed'] as bool
     ..votesTracks = (json['votesTracks'] as List<dynamic>)
-        .map((e) => VotesTrack.fromJson(e as Map<String, dynamic>))
+        .map((e) => VotesTrack.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList()
     ..finished = json['finished'] as bool;
 }

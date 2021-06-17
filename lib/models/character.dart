@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'character.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, anyMap: true)
 class Character {
   late String name;
   late Loyalty loyalty;

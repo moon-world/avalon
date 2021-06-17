@@ -1,7 +1,6 @@
 import 'package:avalon/models/application_state.dart';
-import 'package:avalon/models/user_model.dart';
+import 'package:avalon/models/player_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../src/authentication.dart';
 
@@ -12,10 +11,10 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   bool _isDisabled = false;
-
+  late ApplicationState appState;
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<ApplicationState>();
+    appState = context.watch<ApplicationState>();
     _isDisabled = !appState.loggedIn;
 
     return Material(
@@ -68,6 +67,7 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   void _navigate() {
+    appState.player = new Player(appState.userName!);
     Navigator.pushNamed(context, '/main');
   }
 }

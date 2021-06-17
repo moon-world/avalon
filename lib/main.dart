@@ -1,4 +1,5 @@
 import 'package:avalon/screens/welcome_page.dart';
+import 'package:avalon/services/rt_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './screens/main_page.dart';
@@ -20,7 +21,8 @@ class AvalonApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserModel()),
-        ChangeNotifierProvider(create: (context) => ApplicationState())
+        ChangeNotifierProvider(create: (context) => ApplicationState()),
+        ChangeNotifierProvider(create: (context) => RealTimeDataBase())
       ],
       child: MaterialApp(
         title: "Avalon",

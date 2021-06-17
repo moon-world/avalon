@@ -6,7 +6,7 @@ part of 'character.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Character _$CharacterFromJson(Map<String, dynamic> json) {
+Character _$CharacterFromJson(Map json) {
   return Character(
     json['name'] as String,
     _$enumDecode(_$LoyaltyEnumMap, json['loyalty']),

@@ -5,13 +5,13 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'game_session.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, anyMap: true, includeIfNull: true)
 class GameSession {
   String? sessionId;
+  String? sessionDbUId;
   int? numberOfPlayers;
   int? numberOfMinions;
   List<Player>? players;
-  Map<String, Character>? playersCharacters;
   List<Character>? characters;
   List<Quest>? quests;
 
