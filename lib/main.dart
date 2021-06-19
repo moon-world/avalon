@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:avalon/screens/gameplay_page.dart';
 import 'package:avalon/screens/welcome_page.dart';
 import 'package:avalon/services/rt_database.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +33,8 @@ class AvalonApp extends StatelessWidget {
           '/': (context) => WelcomePage(),
           '/main': (context) => MainPage(),
           '/lobby': (context) => LobbyPage(),
-          '/settings': (context) => SettingsPage()
+          '/settings': (context) => SettingsPage(),
+          '/gameplay': (context) => GameplayPage()
         }),
       ),
     );

@@ -67,7 +67,7 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   void _navigate() {
-    appState.player = new Player(appState.userName!);
+    appState.player = new Player(appState.userName!, appState.email!);
     Navigator.pushNamed(context, '/main');
   }
 }

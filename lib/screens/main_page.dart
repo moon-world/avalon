@@ -2,6 +2,7 @@ import 'package:avalon/models/application_state.dart';
 import 'package:avalon/services/rt_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:avalon/src/widgets.dart' as widgets;
 
 class MainPage extends StatefulWidget {
   @override
@@ -108,6 +109,7 @@ class _MainPage extends State<MainPage> {
 
   createLobby() {
     try {
+      widgets.currentIndex = 0;
       appState.player!.isLeader = true;
       if (database.createLobby(appState.player!)) {
         Navigator.pushNamed(context, '/lobby');
@@ -120,6 +122,7 @@ class _MainPage extends State<MainPage> {
   }
 
   enterLobby() async {
+    appState.player!.isLeader = false;
     String result =
         await database.enterLobby(_textEditController.text, appState.player!);
     switch (result) {

@@ -11,6 +11,7 @@ Character _$CharacterFromJson(Map json) {
     json['name'] as String,
     _$enumDecode(_$LoyaltyEnumMap, json['loyalty']),
     json['description'] as String,
+    json['imagePath'] as String,
   );
 }
 
@@ -18,6 +19,7 @@ Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
       'name': instance.name,
       'loyalty': _$LoyaltyEnumMap[instance.loyalty],
       'description': instance.description,
+      'imagePath': instance.imagePath,
     };
 
 K _$enumDecode<K, V>(

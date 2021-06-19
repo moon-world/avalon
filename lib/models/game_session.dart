@@ -11,6 +11,7 @@ class GameSession {
   String? sessionDbUId;
   int numberOfPlayers = 5;
   int numberOfMinions = 2;
+  bool started = false;
   List<Player>? players;
   List<Character>? characters;
   List<Quest>? quests;

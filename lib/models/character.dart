@@ -1,4 +1,5 @@
 import 'package:avalon/models/loyalties.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'character.g.dart';
@@ -8,8 +9,13 @@ class Character {
   late String name;
   late Loyalty loyalty;
   late String description;
+  late String imagePath;
+  @JsonKey(ignore: true)
+  late Image image;
 
-  Character(this.name, this.loyalty, this.description);
+  Character(this.name, this.loyalty, this.description, this.imagePath) {
+    image = new Image(image: AssetImage(imagePath));
+  }
 
   factory Character.fromJson(Map<String, dynamic> json) =>
       _$CharacterFromJson(json);

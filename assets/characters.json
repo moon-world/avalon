@@ -1,0 +1,88 @@
+{
+    "characters" : [
+        {
+            "name" : "Merlin",
+            "loyalty" : "arthur",
+            "imagePath" : "./assets/images/Merlin.png",
+            "description" : "Can see Evil baside Mordred"
+        },
+        {
+            "name" : "Mordred",
+            "loyalty" : "mordred",
+            "imagePath" : "./assets/images/Mordred.png",
+            "description" : "Can't be seen by Merlin"
+        },
+        {
+            "name" : "Morgana",
+            "loyalty" : "mordred",
+            "imagePath" : "./assets/images/Morgana.png",
+            "description" : "Revealing herself to Percival as Merlin"
+        },
+        {
+            "name" : "Percival",
+            "loyalty" : "arthur",
+            "imagePath" : "./assets/images/Percival.png",
+            "description" : "Knows who is Merlin at the start of the game"
+        },
+        {
+            "name" : "Oberon",
+            "loyalty" : "mordred",
+            "imagePath" : "./assets/images/Oberon.png",
+            "description" : "Can't be seen and can't see Evil players"
+        },
+        {
+            "name" : "Assassin",
+            "loyalty" : "mordred",
+            "imagePath" : "./assets/images/Assassin.png",
+            "description" : "Can try to guess who is Merlin at the end of the game and bring victory to Evil side"
+        },
+        {
+            "name" : "Loyal servant of Arthur",
+            "loyalty" : "arthur",
+            "imagePath" : "./assets/images/Loyal_servant_1.png",
+            "description" : "Good character without special abilities"
+        },
+        {
+            "name" : "Loyal servant of Arthur",
+            "loyalty" : "arthur",
+            "imagePath" : "./assets/images/Loyal_servant_2.png",
+            "description" : "Good character without special abilities"
+        },
+        {
+            "name" : "Loyal servant of Arthur",
+            "loyalty" : "arthur",
+            "imagePath" : "./assets/images/Loyal_servant_3.png",
+            "description" : "Good character without special abilities"
+        },
+        {
+            "name" : "Loyal servant of Arthur",
+            "loyalty" : "arthur",
+            "imagePath" : "./assets/images/Loyal_servant_4.png",
+            "description" : "Good character without special abilities"
+        },
+        {
+            "name" : "Loyal servant of Arthur",
+            "loyalty" : "arthur",
+            "imagePath" : "./assets/images/Loyal_servant_5.png",
+            "description" : "Good character without special abilities"
+        },
+        {
+            "name" : "Minion of Mordred",
+            "loyalty" : "mordred",
+            "imagePath" : "./assets/images/Minion_of_mordred_1.png",
+            "description" : "Evil character without special abilities"
+        },
+        {
+            "name" : "Minion of Mordred",
+            "loyalty" : "mordred",
+            "imagePath" : "./assets/images/Minion_of_mordred_2.png",
+            "description" : "Evil character without special abilities"
+        },
+        {
+            "name" : "Minion of Mordred",
+            "loyalty" : "mordred",
+            "imagePath" : "./assets/images/Minion_of_mordred_3.png",
+            "description" : "Evil character without special abilities"
+        }
+    ]
+}

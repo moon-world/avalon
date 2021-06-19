@@ -9,6 +9,7 @@ part of 'player_model.dart';
 Player _$PlayerFromJson(Map json) {
   return Player(
     json['name'] as String,
+    json['mail'] as String,
   )
     ..character = json['character'] == null
         ? null
@@ -22,6 +23,7 @@ Player _$PlayerFromJson(Map json) {
 
 Map<String, dynamic> _$PlayerToJson(Player instance) => <String, dynamic>{
       'name': instance.name,
+      'mail': instance.mail,
       'character': instance.character?.toJson(),
       'isLeader': instance.isLeader,
       'voteToken': instance.voteToken,
