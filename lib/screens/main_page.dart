@@ -110,6 +110,7 @@ class _MainPage extends State<MainPage> {
   createLobby() {
     try {
       widgets.currentIndex = 0;
+      database.player = appState.player!;
       appState.player!.isLeader = true;
       if (database.createLobby(appState.player!)) {
         Navigator.pushNamed(context, '/lobby');
@@ -123,6 +124,7 @@ class _MainPage extends State<MainPage> {
 
   enterLobby() async {
     appState.player!.isLeader = false;
+    database.player = appState.player!;
     String result =
         await database.enterLobby(_textEditController.text, appState.player!);
     switch (result) {

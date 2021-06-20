@@ -29,6 +29,7 @@ class RealTimeDataBase extends ChangeNotifier {
 
   late List<Character> charactersList;
   GameSession? gameSession;
+  Player? player;
   late DatabaseReference _gameSessionReference;
   late StreamSubscription<Event> _gameSessionSubscription;
 
