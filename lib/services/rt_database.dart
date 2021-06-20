@@ -12,6 +12,8 @@ import 'dart:convert';
 
 final databaseReference = FirebaseDatabase.instance.reference();
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+const debugChars =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoprqrstuvwxyz0123456789';
 
 class RealTimeDataBase extends ChangeNotifier {
   RealTimeDataBase() {
@@ -168,5 +170,33 @@ class RealTimeDataBase extends ChangeNotifier {
       }
     }
     return false;
+  }
+
+  startGame() {
+    debugCreateGame(); // only for debugging
+    gameSession!.characters!.shuffle();
+    gameSession!.players!.shuffle();
+    for (var i = 0; i < gameSession!.players!.length; i++) {
+      gameSession!.players![i].character = gameSession!.characters![i];
+    }
+    var rnd = new Random();
+    gameSession!.players![rnd.nextInt(gameSession!.numberOfPlayers - 1)]
+        .isQuestLeader = true;
+    gameSession!.started = true;
+    updateGameSession();
+  }
+
+  debugCreateGame() {
+    for (var i = 1; i < gameSession!.numberOfPlayers; i++) {
+      gameSession!.players!
+          .add(new Player(debugRandom(6), "${debugRandom(4)}@mama.co.il"));
+    }
+  }
+
+  String debugRandom(int length) {
+    Random rnd = Random();
+
+    return String.fromCharCodes(Iterable.generate(
+        length, (_) => debugChars.codeUnitAt(rnd.nextInt(debugChars.length))));
   }
 }

@@ -16,6 +16,7 @@ Player _$PlayerFromJson(Map json) {
         : Character.fromJson(
             Map<String, dynamic>.from(json['character'] as Map))
     ..isLeader = json['isLeader'] as bool
+    ..isQuestLeader = json['isQuestLeader'] as bool
     ..voteToken = json['voteToken'] as bool
     ..teamToken = json['teamToken'] as bool
     ..missionToken = json['missionToken'] as bool;
@@ -26,6 +27,7 @@ Map<String, dynamic> _$PlayerToJson(Player instance) => <String, dynamic>{
       'mail': instance.mail,
       'character': instance.character?.toJson(),
       'isLeader': instance.isLeader,
+      'isQuestLeader': instance.isQuestLeader,
       'voteToken': instance.voteToken,
       'teamToken': instance.teamToken,
       'missionToken': instance.missionToken,

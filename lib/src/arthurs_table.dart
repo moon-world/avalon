@@ -8,8 +8,8 @@ class ArthursTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var circleWidth = MediaQuery.of(context).size.width * 0.98;
-    // switch (database.gameSession!.numberOfPlayers) {
-    switch (10) {
+    switch (database.gameSession!.numberOfPlayers) {
+      //switch (10) {
       case 5:
         return
             //5 players

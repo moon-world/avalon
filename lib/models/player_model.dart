@@ -9,6 +9,7 @@ class Player {
   late String mail;
   Character? character;
   bool isLeader = false;
+  bool isQuestLeader = false;
   bool voteToken = false;
   bool teamToken = false;
   bool missionToken = false;

@@ -124,8 +124,9 @@ class _LobbyPageState extends State {
                       Expanded(
                         flex: 1,
                         child: ElevatedButton(
-                            onPressed:
-                                !database.gameIsReady() ? startGame : null,
+                            onPressed: !database.gameIsReady()
+                                ? () => startGame(database)
+                                : null,
                             child: Text("Start Game")),
                       )
                   ],
@@ -140,7 +141,8 @@ class _LobbyPageState extends State {
     });
   }
 
-  startGame() {
+  startGame(RealTimeDataBase database) {
+    database.startGame();
     Navigator.pushNamed(context, '/gameplay');
   }
 }
