@@ -67,7 +67,11 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   void _navigate() {
-    appState.player = new Player(appState.userName!, appState.email!);
-    Navigator.pushNamed(context, '/main');
+    if (appState.userName == null || appState.email == null) {
+      //TODO need to do pop up so user will logout and login, or check email
+    } else {
+      appState.player = new Player(appState.userName!, appState.email!);
+      Navigator.pushNamed(context, '/main');
+    }
   }
 }
