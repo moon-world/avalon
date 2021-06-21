@@ -8,8 +8,8 @@ class ArthursTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var circleWidth = MediaQuery.of(context).size.width * 0.98;
-    switch (database.gameSession!.numberOfPlayers) {
-      //switch (10) {
+    //switch (database.gameSession!.numberOfPlayers) {
+    switch (10) {
       case 5:
         return
             //5 players
@@ -21,91 +21,36 @@ class ArthursTable extends StatelessWidget {
                 color: Colors.blueGrey.shade700, shape: BoxShape.circle),
             child: Stack(
               children: <Widget>[
-                //center circle
-                Positioned(
-                  width: (circleWidth) / 4,
-                  top: 5.0,
-                  left: circleWidth / 2 - ((circleWidth) / 4) / 2,
-                  child: Container(
-                    width: (circleWidth) / 4,
-                    height: (circleWidth) / 4,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Percival.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left top circle
-                Positioned(
-                  width: (circleWidth) / 4,
-                  top: (circleWidth) / 5,
-                  left: ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 4,
-                    height: (circleWidth) / 4,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right tip circle
-                Positioned(
-                  width: (circleWidth) / 4,
-                  top: (circleWidth) / 5,
-                  right: ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 4,
-                    height: (circleWidth) / 4,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left bottom circle
-                Positioned(
-                  width: (circleWidth) / 4,
-                  top: ((circleWidth) / 5) * 3,
-                  left: ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 4,
-                    height: (circleWidth) / 4,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right bottom circle
-                Positioned(
-                  width: (circleWidth) / 4,
-                  top: ((circleWidth) / 5) * 3,
-                  right: ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 4,
-                    height: (circleWidth) / 4,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
+                TopPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 4,
+                    topCoordinate: 0,
+                    leftCoordinate: 1.5),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 4,
+                    topCoordinate: 1,
+                    leftCoordinate: 0.5),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 4,
+                    topCoordinate: 1,
+                    rightCoordinate: 0.5),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 4,
+                    topCoordinate: 3,
+                    leftCoordinate: 0.5),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 4,
+                    topCoordinate: 3,
+                    rightCoordinate: 0.5),
               ],
             ),
           ),
@@ -122,106 +67,42 @@ class ArthursTable extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 //center circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: 5.0,
-                  left: circleWidth / 2 - ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: (circleWidth) / 5,
-                  left: ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right tip circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: (circleWidth) / 5,
-                  right: ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3,
-                  left: ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3,
-                  right: ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 4 - 5,
-                  left: circleWidth / 2 - ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
+                TopPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0,
+                    leftCoordinate: 2),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 1,
+                    leftCoordinate: 0.5),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 1,
+                    rightCoordinate: 0.5),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3,
+                    leftCoordinate: 0.5),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3,
+                    rightCoordinate: 0.5),
+                BottomPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 4,
+                    leftCoordinate: 2),
               ],
             ),
           ),
@@ -237,123 +118,48 @@ class ArthursTable extends StatelessWidget {
                 color: Colors.blueGrey.shade700, shape: BoxShape.circle),
             child: Stack(
               children: <Widget>[
-                //center circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: 5.0,
-                  left: circleWidth / 2 - ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) / 1.5,
-                  left: ((circleWidth) / 5) - ((circleWidth) / 5) / 2.5,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) / 1.5,
-                  right: ((circleWidth) / 5) - ((circleWidth) / 5) / 2.5,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2,
-                  left: 5.0,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2,
-                  right: 5.0,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3.5,
-                  left: ((circleWidth) / 5),
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3.5,
-                  right: ((circleWidth) / 5),
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
+                TopPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0,
+                    leftCoordinate: 2),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0.66,
+                    leftCoordinate: 0.6),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0.66,
+                    rightCoordinate: 0.6),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2,
+                    leftCoordinate: 0.1),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2,
+                    rightCoordinate: 0.1),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3.5,
+                    leftCoordinate: 1),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3.5,
+                    rightCoordinate: 1),
               ],
             ),
           ),
@@ -370,138 +176,54 @@ class ArthursTable extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 //center circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: 5.0,
-                  left: circleWidth / 2 - ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) / 1.5,
-                  left: ((circleWidth) / 5) - ((circleWidth) / 5) / 2.5,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) / 1.5,
-                  right: ((circleWidth) / 5) - ((circleWidth) / 5) / 2.5,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2,
-                  left: 5.0,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2,
-                  right: 5.0,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3.35,
-                  left: ((circleWidth) / 5) - ((circleWidth) / 5) / 2.5,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3.35,
-                  right: ((circleWidth) / 5) - ((circleWidth) / 5) / 2.5,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 4 - 5,
-                  left: circleWidth / 2 - ((circleWidth) / 5) / 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
+                TopPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 1,
+                    leftCoordinate: 2),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0.66,
+                    leftCoordinate: 0.6),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0.66,
+                    rightCoordinate: 0.6),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2,
+                    leftCoordinate: 0.1),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2,
+                    rightCoordinate: 0.1),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3.35,
+                    leftCoordinate: 0.6),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3.35,
+                    rightCoordinate: 0.6),
+                BottomPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 4,
+                    leftCoordinate: 2),
               ],
             ),
           ),
@@ -518,154 +240,61 @@ class ArthursTable extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 //center circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: 5.0,
-                  left: ((circleWidth) / 5) * 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 0.5,
-                  left: ((circleWidth) / 5) * 0.9,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 0.5,
-                  right: ((circleWidth) / 5) * 0.9,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 1.4,
-                  left: ((circleWidth) / 5) * 0.15,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 1.4,
-                  right: ((circleWidth) / 5) * 0.15,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2.6,
-                  left: ((circleWidth) / 5) * 0.15,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2.6,
-                  right: ((circleWidth) / 5) * 0.15,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3.5,
-                  left: ((circleWidth) / 5) * 0.9,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3.5,
-                  right: ((circleWidth) / 5) * 0.9,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/anonym.png'),
-                      ),
-                    ),
-                  ),
-                ),
+                TopPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0,
+                    leftCoordinate: 2),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0.5,
+                    leftCoordinate: 0.9),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0.5,
+                    rightCoordinate: 0.9),
+
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 1.4,
+                    leftCoordinate: 0.15),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 1.4,
+                    rightCoordinate: 0.15),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2.6,
+                    leftCoordinate: 0.15),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2.6,
+                    rightCoordinate: 0.15),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3.5,
+                    leftCoordinate: 0.9),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3.5,
+                    rightCoordinate: 0.9),
               ],
             ),
           ),
@@ -681,205 +310,208 @@ class ArthursTable extends StatelessWidget {
                 color: Colors.blueGrey.shade700, shape: BoxShape.circle),
             child: Stack(
               children: <Widget>[
-                //center circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  height: (circleWidth) / 5,
-                  top: 5.0,
-                  left: ((circleWidth) / 5) * 2,
-                  child: Column(
-                    children: [
-                      Container(
-                          width: (circleWidth) / 5,
-                          height: (circleWidth) / 5,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              fit: BoxFit.fitWidth,
-                              image: AssetImage('assets/images/Merlin.png'),
-                            ),
-                          ),
-                          child: Align(
-                              child: Text(
-                                "${database.player!.name}",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              alignment: FractionalOffset.bottomLeft)),
-                    ],
-                  ),
-                ),
-                //left top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 0.5,
-                  left: ((circleWidth) / 5) * 0.9,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right top circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 0.5,
-                  right: ((circleWidth) / 5) * 0.9,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //left bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 1.4,
-                  left: ((circleWidth) / 5) * 0.15,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //right bottom circle
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 1.4,
-                  left: ((circleWidth) / 5) * 3.85,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2.6,
-                  left: ((circleWidth) / 5) * 0.15,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2.6,
-                  left: ((circleWidth) / 5) * 3.85,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3.5,
-                  left: ((circleWidth) / 5) * 0.9,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 3.5,
-                  right: ((circleWidth) / 5) * 0.9,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 4 - 10.0,
-                  left: ((circleWidth) / 5) * 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
-                //current leader
-                Positioned(
-                  width: (circleWidth) / 5,
-                  top: ((circleWidth) / 5) * 2,
-                  left: ((circleWidth) / 5) * 2,
-                  child: Container(
-                    width: (circleWidth) / 5,
-                    height: (circleWidth) / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: AssetImage('assets/images/Merlin.png'),
-                      ),
-                    ),
-                  ),
-                ),
+                TopPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0,
+                    leftCoordinate: 2),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0.5,
+                    leftCoordinate: 0.9),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 0.5,
+                    rightCoordinate: 0.9),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 1.4,
+                    leftCoordinate: 0.15),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 1.4,
+                    rightCoordinate: 0.15),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2.6,
+                    leftCoordinate: 0.15),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2.6,
+                    rightCoordinate: 0.15),
+                LeftPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3.5,
+                    leftCoordinate: 0.9),
+                RightPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 3.5,
+                    rightCoordinate: 0.9),
+                BottomPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 4,
+                    leftCoordinate: 2),
+                BottomPlayer(
+                    circleWidth: circleWidth,
+                    database: database,
+                    size: 5,
+                    topCoordinate: 2,
+                    leftCoordinate: 2),
               ],
             ),
           ),
         );
     }
+  }
+}
+
+class LeftPlayer extends StatelessWidget {
+  LeftPlayer(
+      {required this.circleWidth,
+      required this.database,
+      required this.size,
+      required this.topCoordinate,
+      required this.leftCoordinate});
+  final double circleWidth;
+  final RealTimeDataBase database;
+  final int size;
+  final double topCoordinate;
+  final double leftCoordinate;
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      width: (circleWidth) / size,
+      top: (circleWidth) / 5 * topCoordinate,
+      left: ((circleWidth) / 5) * leftCoordinate,
+      child: Container(
+        width: (circleWidth) / size,
+        height: (circleWidth) / size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.fitWidth,
+            image: AssetImage('assets/images/Merlin.png'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RightPlayer extends StatelessWidget {
+  RightPlayer(
+      {required this.circleWidth,
+      required this.database,
+      required this.size,
+      required this.topCoordinate,
+      required this.rightCoordinate});
+  final double circleWidth;
+  final RealTimeDataBase database;
+  final int size;
+  final double topCoordinate;
+  final double rightCoordinate;
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      width: (circleWidth) / size,
+      top: (circleWidth) / 5 * topCoordinate,
+      right: ((circleWidth) / 5) * rightCoordinate,
+      child: Container(
+        width: (circleWidth) / size,
+        height: (circleWidth) / size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.fitWidth,
+            image: AssetImage('assets/images/Merlin.png'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BottomPlayer extends StatelessWidget {
+  BottomPlayer(
+      {required this.circleWidth,
+      required this.database,
+      required this.size,
+      required this.topCoordinate,
+      required this.leftCoordinate});
+  final double circleWidth;
+  final RealTimeDataBase database;
+  final int size;
+  final double topCoordinate;
+  final double leftCoordinate;
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      width: (circleWidth) / size,
+      top: ((circleWidth) / size) * topCoordinate - 10,
+      left: ((circleWidth) / 5) * leftCoordinate,
+      child: Container(
+        width: (circleWidth) / size,
+        height: (circleWidth) / size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.fitWidth,
+            image: AssetImage('assets/images/Merlin.png'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TopPlayer extends StatelessWidget {
+  TopPlayer(
+      {required this.circleWidth,
+      required this.database,
+      required this.size,
+      required this.topCoordinate,
+      required this.leftCoordinate});
+  final double circleWidth;
+  final RealTimeDataBase database;
+  final int size;
+  final double topCoordinate;
+  final double leftCoordinate;
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      width: (circleWidth) / size,
+      top: 5.0,
+      left: ((circleWidth) / size) * leftCoordinate,
+      child: Container(
+        width: (circleWidth) / size,
+        height: (circleWidth) / size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.fitWidth,
+            image: AssetImage('assets/images/Merlin.png'),
+          ),
+        ),
+      ),
+    );
   }
 }
