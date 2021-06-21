@@ -9,7 +9,7 @@ class ArthursTable extends StatelessWidget {
   Widget build(BuildContext context) {
     var circleWidth = MediaQuery.of(context).size.width * 0.98;
     //switch (database.gameSession!.numberOfPlayers) {
-    switch (10) {
+    switch (5) {
       case 5:
         return
             //5 players
@@ -24,33 +24,33 @@ class ArthursTable extends StatelessWidget {
                 TopPlayer(
                     circleWidth: circleWidth,
                     database: database,
-                    size: 4,
+                    size: 5,
                     topCoordinate: 0,
-                    leftCoordinate: 1.5),
-                LeftPlayer(
+                    leftCoordinate: 2),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
-                    size: 4,
+                    size: 5,
                     topCoordinate: 1,
                     leftCoordinate: 0.5),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
-                    size: 4,
+                    size: 5,
                     topCoordinate: 1,
-                    rightCoordinate: 0.5),
-                LeftPlayer(
+                    leftCoordinate: 3.5),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
-                    size: 4,
+                    size: 5,
                     topCoordinate: 3,
                     leftCoordinate: 0.5),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
-                    size: 4,
+                    size: 5,
                     topCoordinate: 3,
-                    rightCoordinate: 0.5),
+                    leftCoordinate: 3.5),
               ],
             ),
           ),
@@ -73,30 +73,30 @@ class ArthursTable extends StatelessWidget {
                     size: 5,
                     topCoordinate: 0,
                     leftCoordinate: 2),
-                LeftPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 1,
                     leftCoordinate: 0.5),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 1,
-                    rightCoordinate: 0.5),
-                LeftPlayer(
+                    leftCoordinate: 3.5),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3,
                     leftCoordinate: 0.5),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3,
-                    rightCoordinate: 0.5),
+                    leftCoordinate: 3.5),
                 BottomPlayer(
                     circleWidth: circleWidth,
                     database: database,
@@ -124,42 +124,42 @@ class ArthursTable extends StatelessWidget {
                     size: 5,
                     topCoordinate: 0,
                     leftCoordinate: 2),
-                LeftPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 0.66,
                     leftCoordinate: 0.6),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 0.66,
-                    rightCoordinate: 0.6),
-                LeftPlayer(
+                    leftCoordinate: 3.4),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 2,
                     leftCoordinate: 0.1),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 2,
-                    rightCoordinate: 0.1),
-                LeftPlayer(
+                    leftCoordinate: 3.9),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3.5,
                     leftCoordinate: 1),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3.5,
-                    rightCoordinate: 1),
+                    leftCoordinate: 3),
               ],
             ),
           ),
@@ -182,42 +182,42 @@ class ArthursTable extends StatelessWidget {
                     size: 5,
                     topCoordinate: 1,
                     leftCoordinate: 2),
-                LeftPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 0.66,
                     leftCoordinate: 0.6),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 0.66,
-                    rightCoordinate: 0.6),
-                LeftPlayer(
+                    leftCoordinate: 3.4),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 2,
                     leftCoordinate: 0.1),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 2,
-                    rightCoordinate: 0.1),
-                LeftPlayer(
+                    leftCoordinate: 3.9),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3.35,
                     leftCoordinate: 0.6),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3.35,
-                    rightCoordinate: 0.6),
+                    leftCoordinate: 3.4),
                 BottomPlayer(
                     circleWidth: circleWidth,
                     database: database,
@@ -246,55 +246,55 @@ class ArthursTable extends StatelessWidget {
                     size: 5,
                     topCoordinate: 0,
                     leftCoordinate: 2),
-                LeftPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 0.5,
                     leftCoordinate: 0.9),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 0.5,
-                    rightCoordinate: 0.9),
+                    leftCoordinate: 3.1),
 
-                LeftPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 1.4,
                     leftCoordinate: 0.15),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 1.4,
-                    rightCoordinate: 0.15),
-                LeftPlayer(
+                    leftCoordinate: 3.85),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 2.6,
                     leftCoordinate: 0.15),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 2.6,
-                    rightCoordinate: 0.15),
-                LeftPlayer(
+                    leftCoordinate: 3.85),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3.5,
                     leftCoordinate: 0.9),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3.5,
-                    rightCoordinate: 0.9),
+                    leftCoordinate: 3.1),
               ],
             ),
           ),
@@ -316,54 +316,54 @@ class ArthursTable extends StatelessWidget {
                     size: 5,
                     topCoordinate: 0,
                     leftCoordinate: 2),
-                LeftPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 0.5,
                     leftCoordinate: 0.9),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 0.5,
-                    rightCoordinate: 0.9),
-                LeftPlayer(
+                    leftCoordinate: 3.1),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 1.4,
                     leftCoordinate: 0.15),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 1.4,
-                    rightCoordinate: 0.15),
-                LeftPlayer(
+                    leftCoordinate: 3.85),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 2.6,
                     leftCoordinate: 0.15),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 2.6,
-                    rightCoordinate: 0.15),
-                LeftPlayer(
+                    leftCoordinate: 3.85),
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3.5,
                     leftCoordinate: 0.9),
-                RightPlayer(
+                SidePlayer(
                     circleWidth: circleWidth,
                     database: database,
                     size: 5,
                     topCoordinate: 3.5,
-                    rightCoordinate: 0.9),
+                    leftCoordinate: 3.1),
                 BottomPlayer(
                     circleWidth: circleWidth,
                     database: database,
@@ -384,8 +384,8 @@ class ArthursTable extends StatelessWidget {
   }
 }
 
-class LeftPlayer extends StatelessWidget {
-  LeftPlayer(
+class SidePlayer extends StatelessWidget {
+  SidePlayer(
       {required this.circleWidth,
       required this.database,
       required this.size,
@@ -402,39 +402,6 @@ class LeftPlayer extends StatelessWidget {
       width: (circleWidth) / size,
       top: (circleWidth) / 5 * topCoordinate,
       left: ((circleWidth) / 5) * leftCoordinate,
-      child: Container(
-        width: (circleWidth) / size,
-        height: (circleWidth) / size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            fit: BoxFit.fitWidth,
-            image: AssetImage('assets/images/Merlin.png'),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class RightPlayer extends StatelessWidget {
-  RightPlayer(
-      {required this.circleWidth,
-      required this.database,
-      required this.size,
-      required this.topCoordinate,
-      required this.rightCoordinate});
-  final double circleWidth;
-  final RealTimeDataBase database;
-  final int size;
-  final double topCoordinate;
-  final double rightCoordinate;
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      width: (circleWidth) / size,
-      top: (circleWidth) / 5 * topCoordinate,
-      right: ((circleWidth) / 5) * rightCoordinate,
       child: Container(
         width: (circleWidth) / size,
         height: (circleWidth) / size,
