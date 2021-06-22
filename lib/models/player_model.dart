@@ -13,6 +13,10 @@ class Player {
   bool voteToken = false;
   bool teamToken = false;
   bool missionToken = false;
+  @JsonKey(ignore: true)
+  double? topCoordinate;
+  @JsonKey(ignore: true)
+  double? leftCoordinate;
 
   Player(this.name, this.mail);
 

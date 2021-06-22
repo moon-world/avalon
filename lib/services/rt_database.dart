@@ -79,6 +79,9 @@ class RealTimeDataBase extends ChangeNotifier {
         if (gameSession!.players!.length >= gameSession!.numberOfPlayers) {
           return 'Lobby is full!';
         }
+        if (gameSession!.started) {
+          return 'Game is Started';
+        }
         gameSession!.players!.add(player);
         var jsonString = jsonEncode(gameSession);
         Map<String, dynamic> _game = jsonDecode(jsonString);

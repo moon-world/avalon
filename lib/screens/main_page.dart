@@ -141,6 +141,11 @@ class _MainPage extends State<MainPage> {
         showDialog(
             context: context, builder: (BuildContext context) => lobbyPopup);
         break;
+      case 'Game is Started':
+        var lobbyPopup = new EnterLobbyPopup(LobbyState.started);
+        showDialog(
+            context: context, builder: (BuildContext context) => lobbyPopup);
+        break;
       default:
 
       // TODO: implement pop up with message to User
@@ -151,7 +156,7 @@ class _MainPage extends State<MainPage> {
   exit() {}
 }
 
-enum LobbyState { maxPlayers, notExist, failed, none }
+enum LobbyState { maxPlayers, notExist, failed, started, none }
 
 class EnterLobbyPopup extends StatelessWidget {
   final LobbyState lobbyState;
@@ -176,6 +181,19 @@ class EnterLobbyPopup extends StatelessWidget {
       case LobbyState.notExist:
         return AlertDialog(
           title: const Text('Lobby does not exist!'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Text('Cancel'),
+              ), // Need to change this~
+            ),
+          ],
+        );
+      case LobbyState.started:
+        return AlertDialog(
+          title: const Text('Game is started!'),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context, 'Cancel'),
