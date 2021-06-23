@@ -26,8 +26,9 @@ class _GameplayPage extends State<GameplayPage> {
                 Expanded(flex: 2, child: QuestTracker(database: database)),
                 Expanded(
                     flex: 2,
-                    child:
-                        VotesTracker(quest: database.gameSession!.quests![0])),
+                    child: VotesTracker(
+                        quest: database.gameSession!
+                            .quests![database.gameSession!.currentQuest])),
               ],
             );
           }),

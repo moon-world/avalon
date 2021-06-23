@@ -12,6 +12,7 @@ GameSession _$GameSessionFromJson(Map json) {
     ..sessionDbUId = json['sessionDbUId'] as String?
     ..numberOfPlayers = json['numberOfPlayers'] as int
     ..numberOfMinions = json['numberOfMinions'] as int
+    ..currentQuest = json['currentQuest'] as int
     ..started = json['started'] as bool
     ..players = (json['players'] as List<dynamic>?)
         ?.map((e) => Player.fromJson(Map<String, dynamic>.from(e as Map)))
@@ -30,6 +31,7 @@ Map<String, dynamic> _$GameSessionToJson(GameSession instance) =>
       'sessionDbUId': instance.sessionDbUId,
       'numberOfPlayers': instance.numberOfPlayers,
       'numberOfMinions': instance.numberOfMinions,
+      'currentQuest': instance.currentQuest,
       'started': instance.started,
       'players': instance.players?.map((e) => e.toJson()).toList(),
       'characters': instance.characters?.map((e) => e.toJson()).toList(),
