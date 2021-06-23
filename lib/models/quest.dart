@@ -5,14 +5,16 @@ part 'quest.g.dart';
 
 @JsonSerializable(explicitToJson: true, anyMap: true)
 class Quest {
-  late int questNumber;
-  late int failsRequired;
-  bool failed = false;
-  late List<VotesTrack> votesTracks;
-  bool finished = false;
+  int questNumber;
+  int failsRequired;
+  int numberOfPlayers;
+  bool? failed = false;
+  List<VotesTrack>? votesTracks = [];
+  bool? finished = false;
 
-  Quest(int questNumber) {
-    this.questNumber = questNumber;
+  Quest(this.questNumber, this.failsRequired, this.numberOfPlayers) {
+    failed = false;
+    finished = false;
   }
 
   factory Quest.fromJson(Map<String, dynamic> json) => _$QuestFromJson(json);

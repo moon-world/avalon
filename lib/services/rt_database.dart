@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:avalon/models/character.dart';
 import 'package:avalon/models/game_session.dart';
 import 'package:avalon/models/player_model.dart';
+import 'package:avalon/models/quest.dart';
+import 'package:avalon/models/votes_track.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -27,8 +29,10 @@ class RealTimeDataBase extends ChangeNotifier {
     data['characters'].forEach((value) {
       charactersList.add(Character.fromJson(value));
     });
+    questsJson = await rootBundle.loadString('assets/quests.json');
   }
 
+  late String questsJson;
   late List<Character> charactersList;
   GameSession? gameSession;
   Player? player;
@@ -181,12 +185,75 @@ class RealTimeDataBase extends ChangeNotifier {
     gameSession!.players!.shuffle();
     for (var i = 0; i < gameSession!.players!.length; i++) {
       gameSession!.players![i].character = gameSession!.characters![i];
+      if (player!.name == gameSession!.players![i].name) {
+        player!.character = gameSession!.characters![i];
+      }
     }
+    createQuestTrack();
     var rnd = new Random();
     gameSession!.players![rnd.nextInt(gameSession!.numberOfPlayers - 1)]
         .isQuestLeader = true;
     gameSession!.started = true;
+
     updateGameSession();
+  }
+
+  createQuestTrack() {
+    gameSession!.quests = [];
+    switch (gameSession!.numberOfPlayers) {
+      case 5:
+        var questsData = json.decode(questsJson);
+        questsData['five'].forEach((value) {
+          gameSession!.quests!.add(createQuest(value));
+        });
+        break;
+      case 6:
+        var questsData = json.decode(questsJson);
+        questsData['six'].forEach((value) {
+          gameSession!.quests!.add(createQuest(value));
+        });
+        break;
+      case 7:
+        var questsData = json.decode(questsJson);
+        questsData['seven'].forEach((value) {
+          gameSession!.quests!.add(createQuest(value));
+        });
+        break;
+      case 8:
+        var questsData = json.decode(questsJson);
+        questsData['eight'].forEach((value) {
+          gameSession!.quests!.add(createQuest(value));
+        });
+        break;
+      case 9:
+        var questsData = json.decode(questsJson);
+        questsData['nine'].forEach((value) {
+          gameSession!.quests!.add(createQuest(value));
+        });
+        break;
+      case 10:
+        var questsData = json.decode(questsJson);
+        questsData['ten'].forEach((value) {
+          gameSession!.quests!.add(createQuest(value));
+        });
+        break;
+      default:
+    }
+  }
+
+  Quest createQuest(dynamic value) {
+    var quest = Quest.fromJson(value);
+    quest.failed = false;
+    quest.finished = false;
+    quest.votesTracks = [];
+    for (var i = 0; i < 5; i++) {
+      var votesTrack = new VotesTrack(gameSession!.numberOfPlayers);
+      for (var _player in gameSession!.players!) {
+        votesTrack.votes['${_player.name}'] = false;
+      }
+      quest.votesTracks!.add(votesTrack);
+    }
+    return quest;
   }
 
   debugCreateGame() {
@@ -201,5 +268,15 @@ class RealTimeDataBase extends ChangeNotifier {
 
     return String.fromCharCodes(Iterable.generate(
         length, (_) => debugChars.codeUnitAt(rnd.nextInt(debugChars.length))));
+  }
+
+  void selectPlayer(Player player) {
+    for (var _player in gameSession!.players!) {
+      if (_player.name == player.name &&
+          _player.character!.name == player.character!.name) {
+        _player.missionToken = !_player.missionToken;
+      }
+    }
+    updateGameSession();
   }
 }

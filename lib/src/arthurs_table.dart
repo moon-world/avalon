@@ -1,3 +1,5 @@
+import 'package:avalon/models/loyalties.dart';
+import 'package:avalon/models/player_model.dart';
 import 'package:avalon/services/rt_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +33,7 @@ class ArthursTable extends StatelessWidget {
   ArthursTable({required this.database});
   @override
   Widget build(BuildContext context) {
-    var circleWidth = MediaQuery.of(context).size.width * 0.98;
+    var circleWidth = MediaQuery.of(context).size.width * 0.95;
     switch (database.gameSession!.numberOfPlayers) {
       //switch (6) {
       case 5:
@@ -70,7 +72,44 @@ class ArthursTable extends StatelessWidget {
           database.gameSession!.players![i].leftCoordinate = TEN_LEFT[i];
         }
         break;
-      default: 
+      default:
+    }
+    for (var player in database.gameSession!.players!) {
+      if (database.player!.character!.loyalty == Loyalty.arthur &&
+          (database.player!.character!.name != 'Percival' ||
+              database.player!.character!.name != 'Merlin')) {
+        if (player.name != database.player!.name) {
+          player.character!.showedImagePath = 'assets/images/anonym.png';
+        }
+      } else if (database.player!.character!.name == 'Merlin') {
+        //merlin
+        if (player.character!.loyalty == Loyalty.mordred &&
+            player.character!.name != 'Mordred') {
+          player.character!.showedImagePath = 'assets/images/Evil.png';
+        } else {
+          player.character!.showedImagePath = 'assets/images/anonym.png';
+        }
+      } else if (database.player!.character!.name == 'Percival') {
+        //percival
+        if (player.character!.name == 'Morgana' ||
+            player.character!.name == "Merlin") {
+          player.character!.showedImagePath = 'assets/images/Merlin.png';
+        } else {
+          player.character!.showedImagePath = 'assets/images/anonym.png';
+        }
+      } else if (database.player!.character!.loyalty == Loyalty.mordred) {
+        if (player.character!.loyalty == Loyalty.mordred) {
+          player.character!.showedImagePath = 'assets/images/Evil.png';
+        } else {
+          player.character!.showedImagePath = 'assets/images/anonym.png';
+        }
+      } else {
+        player.character!.showedImagePath = 'assets/images/anonym.png';
+      }
+
+      if (player.name == database.player!.name) {
+        player.character!.showedImagePath = player.character!.imagePath;
+      }
     }
     return
         //5 players
@@ -87,7 +126,8 @@ class ArthursTable extends StatelessWidget {
                   circleWidth: circleWidth,
                   database: database,
                   topCoordinate: player.topCoordinate!,
-                  leftCoordinate: player.leftCoordinate!),
+                  leftCoordinate: player.leftCoordinate!,
+                  player: player),
           ],
         ),
       ),
@@ -100,28 +140,73 @@ class SidePlayer extends StatelessWidget {
       {required this.circleWidth,
       required this.database,
       required this.topCoordinate,
-      required this.leftCoordinate});
+      required this.leftCoordinate,
+      required this.player});
   final double circleWidth;
   final RealTimeDataBase database;
   final double topCoordinate;
   final double leftCoordinate;
+  final Player player;
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
       width: (circleWidth) / 5,
       top: (circleWidth) / 5 * topCoordinate,
       left: ((circleWidth) / 5) * leftCoordinate,
-      child: Container(
-        width: (circleWidth) / 5,
-        height: (circleWidth) / 5,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            fit: BoxFit.fitWidth,
-            image: AssetImage('assets/images/Merlin.png'),
+      child: GestureDetector(
+          child: Container(
+            width: (circleWidth) / 5,
+            height: (circleWidth) / 5,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                fit: BoxFit.fitWidth,
+                image: AssetImage(player.character!.showedImagePath!),
+              ),
+            ),
+            child: Column(
+              children: [
+                if (player.isQuestLeader)
+                  Expanded(
+                    flex: 4,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Image(
+                        image: AssetImage('assets/images/current_leader.png'),
+                        width: circleWidth / 5 * 0.4,
+                      ),
+                    ),
+                  ),
+                if (player.missionToken)
+                  Expanded(
+                    flex: 4,
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Image(
+                        image: AssetImage('assets/images/Team_selector.png'),
+                        width: circleWidth / 5 * 0.4,
+                      ),
+                    ),
+                  ),
+                Expanded(
+                  flex: 2,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      player.name,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
+          onTap: () => selectPlayer()),
     );
+  }
+
+  selectPlayer() {
+    database.selectPlayer(player);
   }
 }

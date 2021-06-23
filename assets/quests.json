@@ -1,0 +1,171 @@
+{
+    "five" : 
+    [
+        {
+            "questNumber" : 1,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 2
+        },
+        {
+            "questNumber" : 2,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 3,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 2
+        },
+        {
+            "questNumber" : 4,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 5,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        }
+    ],
+    "six" : 
+    [
+        {
+            "questNumber" : 1,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 2
+        },
+        {
+            "questNumber" : 2,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 3,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        },
+        {
+            "questNumber" : 4,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 5,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        }
+    ],
+    "seven" : 
+    [
+        {
+            "questNumber" : 1,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 2
+        },
+        {
+            "questNumber" : 2,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 3,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 4,
+            "failsRequired" : 2,
+            "numberOfPlayers" : 4
+        },
+        {
+            "questNumber" : 5,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        }
+    ],
+    "eight" : 
+    [
+        {
+            "questNumber" : 1,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 2,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        },
+        {
+            "questNumber" : 3,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        },
+        {
+            "questNumber" : 4,
+            "failsRequired" : 2,
+            "numberOfPlayers" : 5
+        },
+        {
+            "questNumber" : 5,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 5
+        }
+    ],
+    "nine" : 
+    [
+        {
+            "questNumber" : 1,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 2,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        },
+        {
+            "questNumber" : 3,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        },
+        {
+            "questNumber" : 4,
+            "failsRequired" : 2,
+            "numberOfPlayers" : 5
+        },
+        {
+            "questNumber" : 5,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 5
+        }
+    ],
+    "ten" : 
+    [
+        {
+            "questNumber" : 1,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 3
+        },
+        {
+            "questNumber" : 2,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        },
+        {
+            "questNumber" : 3,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 4
+        },
+        {
+            "questNumber" : 4,
+            "failsRequired" : 2,
+            "numberOfPlayers" : 5
+        },
+        {
+            "questNumber" : 5,
+            "failsRequired" : 1,
+            "numberOfPlayers" : 5
+        }
+    ]
+    
+}

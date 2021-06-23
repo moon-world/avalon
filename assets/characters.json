@@ -26,7 +26,7 @@
         },
         {
             "name" : "Oberon",
-            "loyalty" : "mordred",
+            "loyalty" : "none",
             "imagePath" : "./assets/images/Oberon.png",
             "description" : "Can't be seen and can't see Evil players"
         },

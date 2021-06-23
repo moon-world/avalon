@@ -4,7 +4,7 @@ part 'votes_track.g.dart';
 
 @JsonSerializable(explicitToJson: true, anyMap: true)
 class VotesTrack {
-  late Map<String, bool> votes;
+  Map<String, bool> votes = <String, bool>{};
   late int numberOfPlayers;
   bool voteFailed = false;
 
@@ -26,7 +26,6 @@ class VotesTrack {
 
   VotesTrack(int numberOfPlayers) {
     this.numberOfPlayers = numberOfPlayers;
-    votes = <String, bool>{};
   }
 
   factory VotesTrack.fromJson(Map<String, dynamic> json) =>

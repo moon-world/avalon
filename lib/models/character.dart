@@ -12,6 +12,8 @@ class Character {
   late String imagePath;
   @JsonKey(ignore: true)
   late Image image;
+  @JsonKey(ignore: true)
+  String? showedImagePath;
 
   Character(this.name, this.loyalty, this.description, this.imagePath) {
     image = new Image(image: AssetImage(imagePath));
