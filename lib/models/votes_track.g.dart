@@ -9,9 +9,12 @@ part of 'votes_track.dart';
 VotesTrack _$VotesTrackFromJson(Map json) {
   return VotesTrack(
     json['numberOfPlayers'] as int,
+    json['voteNumber'] as int,
   )
     ..votes = Map<String, bool>.from(json['votes'] as Map)
-    ..voteFailed = json['voteFailed'] as bool;
+    ..voteFailed = json['voteFailed'] as bool
+    ..voteFinished = json['voteFinished'] as bool
+    ..voteStarted = json['voteStarted'] as bool;
 }
 
 Map<String, dynamic> _$VotesTrackToJson(VotesTrack instance) =>
@@ -19,4 +22,7 @@ Map<String, dynamic> _$VotesTrackToJson(VotesTrack instance) =>
       'votes': instance.votes,
       'numberOfPlayers': instance.numberOfPlayers,
       'voteFailed': instance.voteFailed,
+      'voteFinished': instance.voteFinished,
+      'voteStarted': instance.voteStarted,
+      'voteNumber': instance.voteNumber,
     };

@@ -7,6 +7,9 @@ class VotesTrack {
   Map<String, bool> votes = <String, bool>{};
   late int numberOfPlayers;
   bool voteFailed = false;
+  bool voteFinished = false;
+  bool voteStarted = false;
+  late int voteNumber;
 
   checkVotingFailed(int numberOfFailsNeeded) {
     int currentVotesFailed = 0;
@@ -24,8 +27,9 @@ class VotesTrack {
     votes.update(playerName, (value) => false);
   }
 
-  VotesTrack(int numberOfPlayers) {
+  VotesTrack(int numberOfPlayers, int voteNumber) {
     this.numberOfPlayers = numberOfPlayers;
+    this.voteNumber = voteNumber;
   }
 
   factory VotesTrack.fromJson(Map<String, dynamic> json) =>

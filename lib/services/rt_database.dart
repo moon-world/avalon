@@ -243,11 +243,9 @@ class RealTimeDataBase extends ChangeNotifier {
 
   Quest createQuest(dynamic value) {
     var quest = Quest.fromJson(value);
-    quest.failed = false;
-    quest.finished = false;
     quest.votesTracks = [];
     for (var i = 0; i < 5; i++) {
-      var votesTrack = new VotesTrack(gameSession!.numberOfPlayers);
+      var votesTrack = new VotesTrack(gameSession!.numberOfPlayers, i + 1);
       for (var _player in gameSession!.players!) {
         votesTrack.votes['${_player.name}'] = false;
       }
@@ -274,9 +272,75 @@ class RealTimeDataBase extends ChangeNotifier {
     for (var _player in gameSession!.players!) {
       if (_player.name == player.name &&
           _player.character!.name == player.character!.name) {
-        _player.missionToken = !_player.missionToken;
+        _player.teamToken = !_player.teamToken;
       }
     }
     updateGameSession();
+  }
+
+  startQuest() {
+    gameSession!.quests![gameSession!.currentQuest].questStarted = true;
+    updateGameSession();
+  }
+
+  void voteMission(bool vote) {
+    gameSession!.players!
+        .firstWhere((element) => player!.mail == element.mail)
+        .missionToken = vote;
+    updateGameSession();
+  }
+
+  Player getPlayer() {
+    return gameSession!.players!
+        .firstWhere((element) => player!.mail == element.mail);
+  }
+
+  void startVoting() {
+    gameSession!
+        .quests![gameSession!.currentQuest]
+        .votesTracks![
+            gameSession!.quests![gameSession!.currentQuest].currentVote]
+        .voteStarted = true;
+    updateGameSession();
+  }
+
+  bool isQuestStarted() {
+    if (gameSession!.quests![gameSession!.currentQuest].questStarted) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool isVoteStarted() {
+    if (gameSession!
+        .quests![gameSession!.currentQuest]
+        .votesTracks![
+            gameSession!.quests![gameSession!.currentQuest].currentVote]
+        .voteStarted) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool hasTeamToken() {
+    if (gameSession!.players!
+        .firstWhere((element) => element.mail == player!.mail)
+        .teamToken) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool getTeamToken() {
+    if (gameSession!.players!
+        .firstWhere((element) => element.mail == player!.mail)
+        .teamToken) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

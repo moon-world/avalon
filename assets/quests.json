@@ -4,27 +4,47 @@
         {
             "questNumber" : 1,
             "failsRequired" : 1,
-            "numberOfPlayers" : 2
+            "numberOfPlayers" : 2,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 2,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 3,
             "failsRequired" : 1,
-            "numberOfPlayers" : 2
+            "numberOfPlayers" : 2,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 4,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 5,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         }
     ],
     "six" : 
@@ -32,27 +52,47 @@
         {
             "questNumber" : 1,
             "failsRequired" : 1,
-            "numberOfPlayers" : 2
+            "numberOfPlayers" : 2,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 2,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 3,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 4,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 5,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         }
     ],
     "seven" : 
@@ -60,27 +100,47 @@
         {
             "questNumber" : 1,
             "failsRequired" : 1,
-            "numberOfPlayers" : 2
+            "numberOfPlayers" : 2,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 2,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 3,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 4,
             "failsRequired" : 2,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 5,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         }
     ],
     "eight" : 
@@ -88,27 +148,47 @@
         {
             "questNumber" : 1,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 2,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 3,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 4,
             "failsRequired" : 2,
-            "numberOfPlayers" : 5
+            "numberOfPlayers" : 5,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 5,
             "failsRequired" : 1,
-            "numberOfPlayers" : 5
+            "numberOfPlayers" : 5,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         }
     ],
     "nine" : 
@@ -116,27 +196,47 @@
         {
             "questNumber" : 1,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 2,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 3,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 4,
             "failsRequired" : 2,
-            "numberOfPlayers" : 5
+            "numberOfPlayers" : 5,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 5,
             "failsRequired" : 1,
-            "numberOfPlayers" : 5
+            "numberOfPlayers" : 5,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         }
     ],
     "ten" : 
@@ -144,27 +244,47 @@
         {
             "questNumber" : 1,
             "failsRequired" : 1,
-            "numberOfPlayers" : 3
+            "numberOfPlayers" : 3,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 2,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 3,
             "failsRequired" : 1,
-            "numberOfPlayers" : 4
+            "numberOfPlayers" : 4,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 4,
             "failsRequired" : 2,
-            "numberOfPlayers" : 5
+            "numberOfPlayers" : 5,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         },
         {
             "questNumber" : 5,
             "failsRequired" : 1,
-            "numberOfPlayers" : 5
+            "numberOfPlayers" : 5,
+            "questStarted" : false,
+            "failed" : false,
+            "finished" : false,
+            "currentVote" : 0
         }
     ]
     

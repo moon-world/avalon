@@ -76,7 +76,7 @@ class ArthursTable extends StatelessWidget {
     }
     for (var player in database.gameSession!.players!) {
       if (database.player!.character!.loyalty == Loyalty.arthur &&
-          (database.player!.character!.name != 'Percival' ||
+          (database.player!.character!.name != 'Percival' &&
               database.player!.character!.name != 'Merlin')) {
         if (player.name != database.player!.name) {
           player.character!.showedImagePath = 'assets/images/anonym.png';
@@ -178,7 +178,7 @@ class SidePlayer extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (player.missionToken)
+                if (player.teamToken)
                   Expanded(
                     flex: 4,
                     child: Align(

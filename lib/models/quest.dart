@@ -8,14 +8,13 @@ class Quest {
   int questNumber;
   int failsRequired;
   int numberOfPlayers;
-  bool? failed = false;
+  late int currentVote;
+  late bool questStarted;
+  late bool failed;
   List<VotesTrack>? votesTracks = [];
-  bool? finished = false;
+  late bool finished;
 
-  Quest(this.questNumber, this.failsRequired, this.numberOfPlayers) {
-    failed = false;
-    finished = false;
-  }
+  Quest(this.questNumber, this.failsRequired, this.numberOfPlayers);
 
   factory Quest.fromJson(Map<String, dynamic> json) => _$QuestFromJson(json);
 
