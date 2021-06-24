@@ -36,6 +36,8 @@ class RealTimeDataBase extends ChangeNotifier {
   late List<Character> charactersList;
   GameSession? gameSession;
   Player? player;
+  int? needForRejection;
+  int? currentLeader;
   late DatabaseReference _gameSessionReference;
   late StreamSubscription<Event> _gameSessionSubscription;
 
@@ -190,9 +192,14 @@ class RealTimeDataBase extends ChangeNotifier {
       }
     }
     createQuestTrack();
+    if (gameSession!.numberOfPlayers % 2 == 0) {
+      needForRejection = gameSession!.numberOfPlayers ~/ 2;
+    } else {
+      needForRejection = (gameSession!.numberOfPlayers + 1) ~/ 2;
+    }
     var rnd = new Random();
-    gameSession!.players![rnd.nextInt(gameSession!.numberOfPlayers - 1)]
-        .isQuestLeader = true;
+    currentLeader = rnd.nextInt(gameSession!.numberOfPlayers - 1);
+    gameSession!.players![currentLeader!].isQuestLeader = true;
     gameSession!.started = true;
 
     updateGameSession();
@@ -287,6 +294,7 @@ class RealTimeDataBase extends ChangeNotifier {
     gameSession!.players!
         .firstWhere((element) => player!.mail == element.mail)
         .missionToken = vote;
+
     updateGameSession();
   }
 
@@ -342,5 +350,85 @@ class RealTimeDataBase extends ChangeNotifier {
     } else {
       return false;
     }
+  }
+
+  Quest getCurrentQuest() {
+    return gameSession!.quests![gameSession!.currentQuest];
+  }
+
+  VotesTrack getCurrentVotesTrack() {
+    return gameSession!.quests![gameSession!.currentQuest].votesTracks![
+        gameSession!.quests![gameSession!.currentQuest].currentVote];
+  }
+
+  bool isVoteFinished() {
+    if (isVoteStarted()) {
+      var count = 0;
+      for (var item in gameSession!.players!) {
+        if (item.isVoted) {
+          count++;
+        }
+      }
+      if (count == gameSession!.players!.length) {
+        getCurrentVotesTrack().voteFinished = true;
+      }
+    }
+
+    if (gameSession!.players!.length % 2 == 0) {}
+    if (getCurrentVotesTrack().voteFinished) {
+      getCurrentVotesTrack().checkVotingFailed(needForRejection!);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  nextQuest() {
+    updateQuest();
+    restartPlayersInfo();
+    gameSession!.currentQuest++;
+    updateGameSession();
+  }
+
+  updateQuest() {
+    var failedQuests = 0;
+    for (var item in getMissionVotes()) {
+      if (!item.missionToken) {
+        failedQuests++;
+      }
+    }
+    if (failedQuests >= getCurrentQuest().failsRequired) {
+      getCurrentQuest().failed = true;
+    } else {
+      getCurrentQuest().failed = false;
+    }
+    getCurrentQuest().finished = true;
+  }
+
+  restartPlayersInfo() {
+    for (var item in gameSession!.players!) {
+      item.isVoted = false;
+      item.isMissionVoted = false;
+      item.missionToken = false;
+      item.teamToken = false;
+      item.isQuestLeader = false;
+    }
+    if (currentLeader! >= gameSession!.numberOfPlayers - 1) {
+      currentLeader = 0;
+    } else {
+      currentLeader = currentLeader! + 1;
+    }
+    gameSession!.players![currentLeader!].isQuestLeader = true;
+  }
+
+  List<Player> getMissionVotes() {
+    List<Player> votedPlayers = [];
+    for (var item in gameSession!.players!) {
+      if (item.isMissionVoted) {
+        votedPlayers.add(item);
+      }
+    }
+    votedPlayers.shuffle();
+    return votedPlayers;
   }
 }

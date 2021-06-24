@@ -189,6 +189,28 @@ class SidePlayer extends StatelessWidget {
                       ),
                     ),
                   ),
+                if (player.isVoted && !player.voteToken)
+                  Expanded(
+                    flex: 4,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Image(
+                        image: AssetImage('assets/images/vote_reject.png'),
+                        width: circleWidth / 5 * 0.4,
+                      ),
+                    ),
+                  ),
+                if (player.isVoted && player.voteToken)
+                  Expanded(
+                    flex: 4,
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: Image(
+                        image: AssetImage('assets/images/Vote_approve.png'),
+                        width: circleWidth / 5 * 0.4,
+                      ),
+                    ),
+                  ),
                 Expanded(
                   flex: 2,
                   child: Align(

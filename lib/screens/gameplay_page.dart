@@ -22,7 +22,9 @@ class _GameplayPage extends State<GameplayPage> {
         body: Material(
           child:
               Consumer<RealTimeDataBase>(builder: (context, database, child) {
-            if (database.isQuestStarted() && database.hasTeamToken())
+            if (database.isQuestStarted() &&
+                database.hasTeamToken() &&
+                !database.getPlayer().isMissionVoted)
               return Center(
                 child: Row(
                   children: [
@@ -66,7 +68,7 @@ class _GameplayPage extends State<GameplayPage> {
                 ),
               );
 
-            if (database.isVoteStarted())
+            if (database.isVoteStarted() && !database.getPlayer().isVoted)
               return Center(
                 child: Row(
                   children: [
@@ -87,25 +89,23 @@ class _GameplayPage extends State<GameplayPage> {
                         ),
                       ),
                     ),
-                    if (database.getPlayer().character!.loyalty ==
-                        Loyalty.mordred)
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => onMissionVote(database, false),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: screenWidth / 2,
-                              child: ClipRRect(
-                                  child: Image(
-                                    image: AssetImage(
-                                        'assets/images/vote_reject.png'),
-                                  ),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () => onMissionVote(database, false),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: screenWidth / 2,
+                            child: ClipRRect(
+                                child: Image(
+                                  image: AssetImage(
+                                      'assets/images/vote_reject.png'),
+                                ),
+                                borderRadius: BorderRadius.circular(20)),
                           ),
                         ),
                       ),
+                    ),
                   ],
                 ),
               );
@@ -113,32 +113,51 @@ class _GameplayPage extends State<GameplayPage> {
             return Column(
               children: [
                 Expanded(flex: 5, child: ArthursTable(database: database)),
-                if (database.player!.isQuestLeader)
-                  Expanded(
-                    flex: 1,
-                    child: Row(
-                      children: [
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      if (database.player!.isLeader)
                         Expanded(
                           child: Padding(
                             padding:
-                                const EdgeInsets.only(left: 15.0, right: 15.0),
+                                const EdgeInsets.only(left: 5.0, right: 5.0),
                             child: ElevatedButton(
                                 onPressed: () => startVoting(database),
                                 child: Text("Start Voting")),
                           ),
                         ),
+                      if (database.player!.isLeader)
                         Expanded(
                           child: Padding(
                             padding:
-                                const EdgeInsets.only(left: 15.0, right: 15.0),
+                                const EdgeInsets.only(left: 5.0, right: 5.0),
                             child: ElevatedButton(
                                 onPressed: () => startQuest(database),
                                 child: Text("Start Quest")),
                           ),
                         ),
-                      ],
-                    ),
+                      if (database.player!.isLeader)
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            child: ElevatedButton(
+                                onPressed: () => nextQuest(database),
+                                child: Text("Next Quest")),
+                          ),
+                        ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                          child: ElevatedButton(
+                              onPressed: () => checkQuest(database, context),
+                              child: Text("Check quest")),
+                        ),
+                      ),
+                    ],
                   ),
+                ),
                 Expanded(
                     flex: 2,
                     child: QuestTracker(
@@ -173,5 +192,48 @@ class _GameplayPage extends State<GameplayPage> {
 
   void onMissionVote(RealTimeDataBase database, bool vote) {
     database.voteMission(vote);
+  }
+
+  nextQuest(RealTimeDataBase database) {
+    database.nextQuest();
+  }
+
+  checkQuest(RealTimeDataBase database, BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Vote are:'),
+        actions: <Widget>[
+          Row(
+            children: [
+              for (var item in database.getMissionVotes())
+                if (item.missionToken)
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image(
+                      image: AssetImage('assets/images/Success_card.png'),
+                    ),
+                  ))
+                else
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image(
+                      image: AssetImage('assets/images/Fail_card.png'),
+                    ),
+                  ))
+            ],
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Text('Cancel'),
+            ), // Need to change this~
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -13,6 +13,8 @@ class Player {
   bool voteToken = false;
   bool teamToken = false;
   bool missionToken = false;
+  bool isVoted = false;
+  bool isMissionVoted = false;
   @JsonKey(ignore: true)
   double? topCoordinate;
   @JsonKey(ignore: true)

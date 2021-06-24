@@ -19,7 +19,9 @@ Player _$PlayerFromJson(Map json) {
     ..isQuestLeader = json['isQuestLeader'] as bool
     ..voteToken = json['voteToken'] as bool
     ..teamToken = json['teamToken'] as bool
-    ..missionToken = json['missionToken'] as bool;
+    ..missionToken = json['missionToken'] as bool
+    ..isVoted = json['isVoted'] as bool
+    ..isMissionVoted = json['isMissionVoted'] as bool;
 }
 
 Map<String, dynamic> _$PlayerToJson(Player instance) => <String, dynamic>{
@@ -31,4 +33,6 @@ Map<String, dynamic> _$PlayerToJson(Player instance) => <String, dynamic>{
       'voteToken': instance.voteToken,
       'teamToken': instance.teamToken,
       'missionToken': instance.missionToken,
+      'isVoted': instance.isVoted,
+      'isMissionVoted': instance.isMissionVoted,
     };
