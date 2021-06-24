@@ -16,7 +16,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     appState = context.watch<ApplicationState>();
     _isDisabled = !appState.loggedIn;
-
+   
     return Material(
       child: Container(
         child: Column(
@@ -48,6 +48,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   registerAccount: appState.registerAccount,
                   signOut: appState.signOut,
                 ),
+                
               ),
             ),
             Padding(
@@ -68,7 +69,16 @@ class _WelcomePageState extends State<WelcomePage> {
 
   void _navigate() {
     if (appState.userName == null || appState.email == null) {
-      //TODO need to do pop up so user will logout and login, or check email
+      appState.signOut();
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                title: Text("Please log in first"),
+                actions: [],
+                elevation: 24.0,
+                backgroundColor: Colors.blue,
+              ));
+      
     } else {
       appState.player = new Player(appState.userName!, appState.email!);
       Navigator.pushNamed(context, '/main');
