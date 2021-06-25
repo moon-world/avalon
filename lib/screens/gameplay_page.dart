@@ -1,4 +1,5 @@
 import 'package:avalon/models/loyalties.dart';
+import 'package:avalon/models/player_model.dart';
 import 'package:avalon/models/votes_track.dart';
 import 'package:avalon/services/rt_database.dart';
 import 'package:avalon/src/arthurs_table.dart';
@@ -22,6 +23,98 @@ class _GameplayPage extends State<GameplayPage> {
         body: Material(
           child:
               Consumer<RealTimeDataBase>(builder: (context, database, child) {
+            if (database.gameSession!.ended) {
+              if (database.gameSession!.wonTeam == Loyalty.mordred) {
+                return Center(child: Text('Mordred has won.'));
+              } else if (database.gameSession!.wonTeam == Loyalty.arthur) {
+                return Center(
+                    child: Column(
+                  children: [
+                    Text('Arthur has won.'),
+                    Row(
+                      children: [
+                        for (var item in database.gameSession!.players!)
+                          Column(children: [
+                            Text(item.name),
+                            Expanded(
+                                child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Image(
+                                image: AssetImage(item.character!.imagePath),
+                              ),
+                            )),
+                          ])
+                      ],
+                    )
+                  ],
+                ));
+              }
+            }
+
+            if (database.checkIfGameFinished() == Loyalty.mordred) {
+              return Center(child: Text('Mordred has won.'));
+            } else if (database.checkIfGameFinished() == Loyalty.arthur) {
+              return Center(
+                child: Column(
+                  children: [
+                    Expanded(
+                        flex: 2,
+                        child: Center(child: Text('Quests succeeded.'))),
+                    Expanded(
+                        flex: 2,
+                        child: Center(
+                            child:
+                                Text('Assassin can try guest who is Merlin.'))),
+                    Expanded(
+                      flex: 6,
+                      child: Row(
+                        children: [
+                          for (var item in database.gameSession!.players!)
+                            Expanded(
+                              child: GestureDetector(
+                                child: Column(
+                                  children: [
+                                    Center(
+                                      child: Text(item.name),
+                                    ),
+                                    if (database.getPlayer().character!.name ==
+                                            'Assassin' &&
+                                        item.character!.loyalty ==
+                                            Loyalty.mordred)
+                                      Expanded(
+                                          child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Image(
+                                          image: AssetImage(
+                                              item.character!.imagePath),
+                                        ),
+                                      )),
+                                    if (database.getPlayer().character!.name !=
+                                        'Assassin')
+                                      Expanded(
+                                          child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Image(
+                                          image: AssetImage(
+                                              'assets/images/anonym.png'),
+                                        ),
+                                      )),
+                                  ],
+                                ),
+                                onTap: database.getPlayer().character!.name ==
+                                        'Assassin'
+                                    ? () => choosePlayer(database, item)
+                                    : null,
+                              ),
+                            )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+
             if (database.isQuestStarted() &&
                 database.hasTeamToken() &&
                 !database.getPlayer().isMissionVoted)
@@ -225,5 +318,9 @@ class _GameplayPage extends State<GameplayPage> {
         ],
       ),
     );
+  }
+
+  choosePlayer(RealTimeDataBase database, Player item) {
+    database.choosePlayer(item);
   }
 }

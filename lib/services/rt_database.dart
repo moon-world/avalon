@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:avalon/models/character.dart';
 import 'package:avalon/models/game_session.dart';
+import 'package:avalon/models/loyalties.dart';
 import 'package:avalon/models/player_model.dart';
 import 'package:avalon/models/quest.dart';
 import 'package:avalon/models/votes_track.dart';
@@ -277,17 +278,27 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   void selectPlayer(Player player) {
+    var numberOfPlayersWithToken =
+        gameSession!.players!.where((element) => element.teamToken).length;
     for (var _player in gameSession!.players!) {
       if (_player.name == player.name &&
           _player.character!.name == player.character!.name) {
-        _player.teamToken = !_player.teamToken;
+        if (_player.teamToken == false &&
+            getCurrentQuest().numberOfPlayers > numberOfPlayersWithToken) {
+          _player.teamToken = true;
+        } else if (_player.teamToken == true) {
+          _player.teamToken = false;
+        }
       }
     }
     updateGameSession();
   }
 
   startQuest() {
-    gameSession!.quests![gameSession!.currentQuest].questStarted = true;
+    if (getCurrentVotesTrack().voteFinished) {
+      getCurrentQuest().questStarted = true;
+    }
+    entered = false;
     updateGameSession();
   }
 
@@ -312,7 +323,7 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   bool isQuestStarted() {
-    if (gameSession!.quests![gameSession!.currentQuest].questStarted) {
+    if (getCurrentQuest().questStarted) {
       return true;
     } else {
       return false;
@@ -373,14 +384,22 @@ class RealTimeDataBase extends ChangeNotifier {
       }
     }
 
-    if (gameSession!.players!.length % 2 == 0) {}
     if (getCurrentVotesTrack().voteFinished && !entered) {
       getCurrentVotesTrack().checkVotingFailed(needForRejection!);
       entered = true;
-      if (!getCurrentVotesTrack().voteFailed) {
-        Timer(new Duration(seconds: 5), startQuest);
+
+      var currentVoteNumber = getCurrentVotesTrack().voteNumber;
+      if (getCurrentVotesTrack().voteFailed) {
+        if (getCurrentVotesTrack().voteNumber == 5) {
+          //fail the quest
+          Timer(new Duration(seconds: 5), failQuest);
+        } else {
+          //reset Voting if it is failed and finish current voting session
+          Timer(new Duration(seconds: 5), resetVoting);
+        }
       } else {
-        Timer(new Duration(seconds: 5), resetVoting);
+        //if Voting is succeeded start the quest
+        Timer(new Duration(seconds: 1), startQuest);
       }
 
       return true;
@@ -389,10 +408,33 @@ class RealTimeDataBase extends ChangeNotifier {
     }
   }
 
+  Loyalty checkIfGameFinished() {
+    var failsCount = 0;
+    var successCount = 0;
+    for (var item in gameSession!.quests!) {
+      if (item.finished && item.failed) {
+        failsCount++;
+      } else if (item.finished && !item.failed) {
+        successCount++;
+      }
+    }
+    if (failsCount >= 3) {
+      return Loyalty.mordred;
+    } else if (successCount >= 3) {
+      return Loyalty.arthur;
+    } else {
+      return Loyalty.none;
+    }
+  }
+
   nextQuest() {
     updateQuest();
     restartPlayersInfo();
-    gameSession!.currentQuest++;
+    if (gameSession!.quests!.length - 1 > gameSession!.currentQuest) {
+      gameSession!.currentQuest++;
+    } else {
+      gameSession!.ended = true;
+    }
     updateGameSession();
   }
 
@@ -447,7 +489,35 @@ class RealTimeDataBase extends ChangeNotifier {
 
   void resetVoting() {
     restartPlayersInfo();
-    getCurrentQuest().currentVote++;
+    if (getCurrentQuest().currentVote < 4) {
+      getCurrentQuest().currentVote++;
+    }
+    entered = false;
+    updateGameSession();
+  }
+
+  void failQuest() {
+    getCurrentQuest().failed = true;
+    getCurrentQuest().finished = true;
+    restartPlayersInfo();
+    if (gameSession!.quests!.length - 1 > gameSession!.currentQuest) {
+      gameSession!.currentQuest++;
+    } else {
+      gameSession!.ended = true;
+    }
+    entered = false;
+    updateGameSession();
+  }
+
+  void choosePlayer(Player player) {
+    if (player.character!.name == 'Merlin') {
+      gameSession!.ended = true;
+      gameSession!.wonTeam = Loyalty.mordred;
+    } else {
+      gameSession!.ended = true;
+      gameSession!.wonTeam = Loyalty.arthur;
+    }
+
     updateGameSession();
   }
 }

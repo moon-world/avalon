@@ -125,8 +125,8 @@ class _LobbyPageState extends State {
                         flex: 1,
                         child: ElevatedButton(
                             onPressed: !database.gameIsReady()
-                                ? () => startGame(database)
-                                : null,
+                                ? null
+                                : () => startGame(database),
                             child: Text("Start Game")),
                       ),
                     if (!appState.player!.isLeader)

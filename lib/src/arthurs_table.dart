@@ -229,7 +229,8 @@ class SidePlayer extends StatelessWidget {
               ],
             ),
           ),
-          onTap: database.getPlayer().isQuestLeader ? selectPlayer() : null),
+          onTap:
+              database.getPlayer().isQuestLeader ? () => selectPlayer() : null),
     );
   }
 
