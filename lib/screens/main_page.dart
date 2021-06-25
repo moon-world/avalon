@@ -1,3 +1,4 @@
+import 'package:avalon/localization/Localizations.dart';
 import 'package:avalon/models/application_state.dart';
 import 'package:avalon/services/rt_database.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _MainPage extends State<MainPage> {
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                     ),
-                    child: Text("Create Lobby"),
+                    child: Text(AvalonLocalizations.of(context).createLobbby),
                     onPressed: () {
                       createLobby();
                     },

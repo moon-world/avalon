@@ -8,7 +8,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   double rating = 0;
 
-  final List<String> languages = ['Hebrew', 'English', 'Russian', 'Ukraine'];
+  final List<String> languages = ['Hebrew', 'English', 'Russian'];
   String dropDownValue = 'English';
 
   @override
