@@ -13,6 +13,13 @@ class LobbyPage extends StatefulWidget {
 class _LobbyPageState extends State {
   late int dropdownValue;
   bool isDisabled = false;
+  final ButtonStyle style = ElevatedButton.styleFrom(
+    primary: Colors.blueAccent.shade100,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+      side: BorderSide(color: Colors.blueAccent.shade100),
+    ),
+  );
   //late RealTimeDataBase database;
   late ApplicationState appState;
   @override
@@ -42,10 +49,9 @@ class _LobbyPageState extends State {
                       child: Row(
                         children: [
                           Expanded(
-                            flex: 1,
                             child: Center(
                               child: Text(
-                                "Number of players",
+                                "Number of players:",
                                 style: TextStyle(fontSize: 20.0),
                               ),
                             ),
@@ -53,15 +59,16 @@ class _LobbyPageState extends State {
                           if (appState.player!.isLeader)
                             Expanded(
                               flex: 1,
-                              child: Center(
+                              child: Align(
+                                alignment: Alignment.centerLeft,
                                 child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: DropdownButton<int>(
                                     value:
                                         database.gameSession!.numberOfPlayers,
                                     icon: const Icon(Icons.expand_more),
-                                    iconSize: 34,
-                                    elevation: 15,
+                                    iconSize: 30,
+                                    elevation: 30,
                                     style: const TextStyle(
                                         color: Colors.indigoAccent,
                                         fontSize: 20.0),
@@ -98,9 +105,16 @@ class _LobbyPageState extends State {
                             Expanded(
                               child: Center(
                                 child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
                                     child: Text(
-                                        '${database.gameSession!.numberOfPlayers}')),
+                                        '${database.gameSession!.numberOfPlayers}',
+                                        style: TextStyle(
+                                            color: Colors.indigoAccent,
+                                            fontSize: 24.0)),
+                                  ),
+                                ),
                               ),
                             ),
                         ],
@@ -123,20 +137,36 @@ class _LobbyPageState extends State {
                     if (appState.player!.isLeader)
                       Expanded(
                         flex: 1,
-                        child: ElevatedButton(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: ElevatedButton.icon(
                             onPressed: !database.gameIsReady()
                                 ? null
                                 : () => startGame(database),
-                            child: Text("Start Game")),
+                            style: style,
+                            label: Text("Start Game"),
+                            icon: Icon(
+                              Icons.play_arrow_rounded,
+                            ),
+                          ),
+                        ),
                       ),
                     if (!appState.player!.isLeader)
                       Expanded(
                         flex: 1,
-                        child: ElevatedButton(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: ElevatedButton.icon(
                             onPressed: !database.gameSession!.started
-                                ? null
-                                : () => startGameAsGuest(database),
-                            child: Text("Enter Game")),
+                                ? () => startGameAsGuest(database)
+                                : null,
+                            label: Text("Enter Game"),
+                            style: style,
+                            icon: Icon(
+                              Icons.play_arrow_rounded,
+                            ),
+                          ),
+                        ),
                       ),
                   ],
                 ),
