@@ -128,7 +128,16 @@ class _LobbyPageState extends State {
                                 ? () => startGame(database)
                                 : null,
                             child: Text("Start Game")),
-                      )
+                      ),
+                    if (!appState.player!.isLeader)
+                      Expanded(
+                        flex: 1,
+                        child: ElevatedButton(
+                            onPressed: !database.gameSession!.started
+                                ? null
+                                : () => startGameAsGuest(database),
+                            child: Text("Enter Game")),
+                      ),
                   ],
                 ),
               ),
@@ -144,5 +153,13 @@ class _LobbyPageState extends State {
   startGame(RealTimeDataBase database) {
     database.startGame();
     Navigator.pushNamed(context, '/gameplay');
+  }
+
+  startGameAsGuest(RealTimeDataBase database) {
+    try {
+      Navigator.pushNamed(context, '/gameplay');
+    } catch (e) {
+      print(e);
+    }
   }
 }

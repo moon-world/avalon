@@ -10,7 +10,9 @@ class VotesTracker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    database.isVoteFinished();
+    if (database.getPlayer().isLeader) {
+      database.isVoteFinished();
+    }
     var screenWidth = MediaQuery.of(context).size.width * 0.95;
     List<Widget> list = [];
     for (var item in quest.votesTracks!) {

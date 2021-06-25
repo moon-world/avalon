@@ -40,6 +40,7 @@ class RealTimeDataBase extends ChangeNotifier {
   int? currentLeader;
   late DatabaseReference _gameSessionReference;
   late StreamSubscription<Event> _gameSessionSubscription;
+  bool entered = false;
 
   DatabaseError? _error;
 
@@ -262,7 +263,7 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   debugCreateGame() {
-    for (var i = 1; i < gameSession!.numberOfPlayers; i++) {
+    for (var i = 2; i < gameSession!.numberOfPlayers; i++) {
       gameSession!.players!
           .add(new Player(debugRandom(6), "${debugRandom(4)}@mama.co.il"));
     }
@@ -373,8 +374,15 @@ class RealTimeDataBase extends ChangeNotifier {
     }
 
     if (gameSession!.players!.length % 2 == 0) {}
-    if (getCurrentVotesTrack().voteFinished) {
+    if (getCurrentVotesTrack().voteFinished && !entered) {
       getCurrentVotesTrack().checkVotingFailed(needForRejection!);
+      entered = true;
+      if (!getCurrentVotesTrack().voteFailed) {
+        Timer(new Duration(seconds: 5), startQuest);
+      } else {
+        Timer(new Duration(seconds: 5), resetVoting);
+      }
+
       return true;
     } else {
       return false;
@@ -433,6 +441,13 @@ class RealTimeDataBase extends ChangeNotifier {
   voteForQuest(bool vote) {
     getCurrentVotesTrack().votes.update(getPlayer().name, (value) => vote);
     getPlayer().isVoted = true;
+    getPlayer().voteToken = vote;
+    updateGameSession();
+  }
+
+  void resetVoting() {
+    restartPlayersInfo();
+    getCurrentQuest().currentVote++;
     updateGameSession();
   }
 }
