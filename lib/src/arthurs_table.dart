@@ -75,13 +75,13 @@ class ArthursTable extends StatelessWidget {
       default:
     }
     for (var player in database.gameSession!.players!) {
-      if (database.player!.character!.loyalty == Loyalty.arthur &&
-          (database.player!.character!.name != 'Percival' &&
-              database.player!.character!.name != 'Merlin')) {
+      if (database.getPlayer().character!.loyalty == Loyalty.arthur &&
+          (database.getPlayer().character!.name != 'Percival' &&
+              database.getPlayer().character!.name != 'Merlin')) {
         if (player.name != database.player!.name) {
           player.character!.showedImagePath = 'assets/images/anonym.png';
         }
-      } else if (database.player!.character!.name == 'Merlin') {
+      } else if (database.getPlayer().character!.name == 'Merlin') {
         //merlin
         if (player.character!.loyalty == Loyalty.mordred &&
             player.character!.name != 'Mordred') {
@@ -89,7 +89,7 @@ class ArthursTable extends StatelessWidget {
         } else {
           player.character!.showedImagePath = 'assets/images/anonym.png';
         }
-      } else if (database.player!.character!.name == 'Percival') {
+      } else if (database.getPlayer().character!.name == 'Percival') {
         //percival
         if (player.character!.name == 'Morgana' ||
             player.character!.name == "Merlin") {
@@ -97,7 +97,7 @@ class ArthursTable extends StatelessWidget {
         } else {
           player.character!.showedImagePath = 'assets/images/anonym.png';
         }
-      } else if (database.player!.character!.loyalty == Loyalty.mordred) {
+      } else if (database.getPlayer().character!.loyalty == Loyalty.mordred) {
         if (player.character!.loyalty == Loyalty.mordred) {
           player.character!.showedImagePath = 'assets/images/Evil.png';
         } else {
@@ -169,7 +169,7 @@ class SidePlayer extends StatelessWidget {
               children: [
                 if (player.isQuestLeader)
                   Expanded(
-                    flex: 4,
+                    flex: 2,
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Image(
@@ -178,39 +178,44 @@ class SidePlayer extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (player.teamToken)
-                  Expanded(
-                    flex: 4,
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Image(
-                        image: AssetImage('assets/images/Team_selector.png'),
-                        width: circleWidth / 5 * 0.4,
+                Row(
+                  children: [
+                    if (player.teamToken)
+                      Expanded(
+                        flex: 4,
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Image(
+                            image:
+                                AssetImage('assets/images/Team_selector.png'),
+                            width: circleWidth / 5 * 0.35,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                if (player.isVoted && player.voteToken)
-                  Expanded(
-                    flex: 4,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Image(
-                        image: AssetImage('assets/images/vote_reject.png'),
-                        width: circleWidth / 5 * 0.4,
+                    if (player.isVoted && !player.voteToken)
+                      Expanded(
+                        flex: 4,
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Image(
+                            image: AssetImage('assets/images/vote_reject.png'),
+                            width: circleWidth / 5 * 0.4,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                if (player.isVoted && !player.voteToken)
-                  Expanded(
-                    flex: 4,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Image(
-                        image: AssetImage('assets/images/Vote_approve.png'),
-                        width: circleWidth / 5 * 0.4,
+                    if (player.isVoted && player.voteToken)
+                      Expanded(
+                        flex: 4,
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Image(
+                            image: AssetImage('assets/images/Vote_approve.png'),
+                            width: circleWidth / 5 * 0.4,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
+                  ],
+                ),
                 Expanded(
                   flex: 2,
                   child: Align(
@@ -224,7 +229,8 @@ class SidePlayer extends StatelessWidget {
               ],
             ),
           ),
-          onTap: () => selectPlayer()),
+          onTap:
+              database.getPlayer().isQuestLeader ? () => selectPlayer() : null),
     );
   }
 

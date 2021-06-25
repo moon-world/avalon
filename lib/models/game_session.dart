@@ -1,4 +1,5 @@
 import 'package:avalon/models/character.dart';
+import 'package:avalon/models/loyalties.dart';
 import 'package:avalon/models/player_model.dart';
 import 'package:avalon/models/quest.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -13,9 +14,11 @@ class GameSession {
   int numberOfMinions = 2;
   int currentQuest = 0;
   bool started = false;
+  bool ended = false;
   List<Player>? players;
   List<Character>? characters;
   List<Quest>? quests;
+  Loyalty? wonTeam;
 
   GameSession();
 

@@ -91,15 +91,18 @@ class PlayersTable extends StatelessWidget {
           child: Container(
             height: 120.0,
             child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 8.0,
-                children: [
-                  for (var name in playersNames)
-                    Center(
-                        child: Text(name,
-                            style: TextStyle(
-                                fontSize: 20.0, fontFamily: 'Roboto'))),
-                ]),
+              crossAxisCount: 2,
+              childAspectRatio: 8.0,
+              children: [
+                for (var name in playersNames)
+                  Center(
+                    child: Text(
+                      name,
+                      style: TextStyle(fontSize: 18.0, fontFamily: 'Roboto'),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ],
@@ -147,12 +150,16 @@ class CharactersCarousel extends StatelessWidget {
               children: [
                 IconButton(
                     icon: const Icon(Icons.add_circle_outline_sharp),
+                    iconSize: 30,
+                    color: Colors.blueAccent.shade100,
                     tooltip: 'Enter Lobby',
                     onPressed: () {
                       addCharacter();
                     }),
                 IconButton(
                     icon: const Icon(Icons.remove_circle_outline),
+                    iconSize: 30,
+                    color: Colors.red.shade300,
                     tooltip: 'Enter Lobby',
                     onPressed: () {
                       removeCharacter();
@@ -207,7 +214,7 @@ class ChosenCharactersTable extends StatelessWidget {
                   Center(
                       child: Text(character.name,
                           style:
-                              TextStyle(fontSize: 20.0, fontFamily: 'Roboto'))),
+                              TextStyle(fontSize: 16.0, fontFamily: 'Roboto'))),
               ]),
         ),
       );
