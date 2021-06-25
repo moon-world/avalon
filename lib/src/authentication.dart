@@ -100,15 +100,25 @@ class Authentication extends StatelessWidget {
       case ApplicationLoginState.loggedIn:
         return Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: StyledButton(
-                onPressed: () {
-                  signOut();
-                },
-                child: Text('LOGOUT'),
-              ),
-            ),
+            Expanded(
+              child: 
+Center(
+                child: ElevatedButton(
+              onPressed: () {
+                signOut();
+              },
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.teal, minimumSize: Size(250.0, 50.0)),
+              child: Text("Log Out"),
+            )), )
+
+            //   child: StyledButton(
+            //     onPressed: () {
+            //       signOut();
+            //     },
+            //     child: Text('LOGOUT'),
+            //   ),
+            // ),
           ],
         );
       default:
