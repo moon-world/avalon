@@ -169,7 +169,7 @@ class SidePlayer extends StatelessWidget {
               children: [
                 if (player.isQuestLeader)
                   Expanded(
-                    flex: 4,
+                    flex: 2,
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Image(
@@ -178,39 +178,44 @@ class SidePlayer extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (player.teamToken)
-                  Expanded(
-                    flex: 4,
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Image(
-                        image: AssetImage('assets/images/Team_selector.png'),
-                        width: circleWidth / 5 * 0.4,
+                Row(
+                  children: [
+                    if (player.teamToken)
+                      Expanded(
+                        flex: 4,
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Image(
+                            image:
+                                AssetImage('assets/images/Team_selector.png'),
+                            width: circleWidth / 5 * 0.35,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                if (player.isVoted && !player.voteToken)
-                  Expanded(
-                    flex: 4,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Image(
-                        image: AssetImage('assets/images/vote_reject.png'),
-                        width: circleWidth / 5 * 0.4,
+                    if (player.isVoted && !player.voteToken)
+                      Expanded(
+                        flex: 4,
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Image(
+                            image: AssetImage('assets/images/vote_reject.png'),
+                            width: circleWidth / 5 * 0.4,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                if (player.isVoted && player.voteToken)
-                  Expanded(
-                    flex: 4,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Image(
-                        image: AssetImage('assets/images/Vote_approve.png'),
-                        width: circleWidth / 5 * 0.4,
+                    if (player.isVoted && player.voteToken)
+                      Expanded(
+                        flex: 4,
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Image(
+                            image: AssetImage('assets/images/Vote_approve.png'),
+                            width: circleWidth / 5 * 0.4,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
+                  ],
+                ),
                 Expanded(
                   flex: 2,
                   child: Align(
@@ -224,7 +229,7 @@ class SidePlayer extends StatelessWidget {
               ],
             ),
           ),
-          onTap: () => selectPlayer()),
+          onTap: database.getPlayer().isQuestLeader ? selectPlayer() : null),
     );
   }
 

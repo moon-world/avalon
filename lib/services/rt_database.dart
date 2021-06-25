@@ -183,7 +183,7 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   startGame() {
-    debugCreateGame(); // only for debugging
+    //debugCreateGame(); // only for debugging
     gameSession!.characters!.shuffle();
     gameSession!.players!.shuffle();
     for (var i = 0; i < gameSession!.players!.length; i++) {
@@ -263,7 +263,7 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   debugCreateGame() {
-    for (var i = 2; i < gameSession!.numberOfPlayers; i++) {
+    for (var i = 3; i < gameSession!.numberOfPlayers; i++) {
       gameSession!.players!
           .add(new Player(debugRandom(6), "${debugRandom(4)}@mama.co.il"));
     }
