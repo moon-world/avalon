@@ -262,7 +262,7 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   debugCreateGame() {
-    for (var i = 1; i < gameSession!.numberOfPlayers; i++) {
+    for (var i = 2; i < gameSession!.numberOfPlayers; i++) {
       gameSession!.players!
           .add(new Player(debugRandom(6), "${debugRandom(4)}@mama.co.il"));
     }
