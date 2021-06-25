@@ -189,7 +189,7 @@ class SidePlayer extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (player.isVoted && !player.voteToken)
+                if (player.isVoted && player.voteToken)
                   Expanded(
                     flex: 4,
                     child: Align(
@@ -200,7 +200,7 @@ class SidePlayer extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (player.isVoted && player.voteToken)
+                if (player.isVoted && !player.voteToken)
                   Expanded(
                     flex: 4,
                     child: Align(

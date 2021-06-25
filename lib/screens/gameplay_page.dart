@@ -74,7 +74,7 @@ class _GameplayPage extends State<GameplayPage> {
                   children: [
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => onMissionVote(database, true),
+                        onTap: () => onVote(database, true),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
@@ -91,7 +91,7 @@ class _GameplayPage extends State<GameplayPage> {
                     ),
                     Expanded(
                       child: GestureDetector(
-                        onTap: () => onMissionVote(database, false),
+                        onTap: () => onVote(database, false),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
@@ -192,6 +192,10 @@ class _GameplayPage extends State<GameplayPage> {
 
   void onMissionVote(RealTimeDataBase database, bool vote) {
     database.voteMission(vote);
+  }
+
+  void onVote(RealTimeDataBase database, bool vote) {
+    database.voteForQuest(vote);
   }
 
   nextQuest(RealTimeDataBase database) {

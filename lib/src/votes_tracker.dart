@@ -10,6 +10,7 @@ class VotesTracker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    database.isVoteFinished();
     var screenWidth = MediaQuery.of(context).size.width * 0.95;
     List<Widget> list = [];
     for (var item in quest.votesTracks!) {
@@ -25,6 +26,23 @@ class VotesTracker extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.fitWidth,
                   image: AssetImage('assets/images/vote_failed.png'),
+                ),
+              ),
+            ),
+          ),
+        );
+      } else if (item.voteFinished && !item.voteFailed) {
+        list.add(
+          Expanded(
+            flex: 1,
+            child: Container(
+              width: screenWidth / 5,
+              height: screenWidth / 5,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: AssetImage('assets/images/Vote_approve.png'),
                 ),
               ),
             ),

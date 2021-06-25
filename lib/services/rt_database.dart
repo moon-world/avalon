@@ -291,10 +291,8 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   void voteMission(bool vote) {
-    gameSession!.players!
-        .firstWhere((element) => player!.mail == element.mail)
-        .missionToken = vote;
-
+    getPlayer().missionToken = vote;
+    getPlayer().isMissionVoted = true;
     updateGameSession();
   }
 
@@ -430,5 +428,11 @@ class RealTimeDataBase extends ChangeNotifier {
     }
     votedPlayers.shuffle();
     return votedPlayers;
+  }
+
+  voteForQuest(bool vote) {
+    getCurrentVotesTrack().votes.update(getPlayer().name, (value) => vote);
+    getPlayer().isVoted = true;
+    updateGameSession();
   }
 }
