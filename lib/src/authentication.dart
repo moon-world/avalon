@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 import 'widgets.dart';
 
@@ -9,6 +12,8 @@ enum ApplicationLoginState {
   password,
   loggedIn,
 }
+final RoundedLoadingButtonController _btnController =
+    RoundedLoadingButtonController();
 
 class Authentication extends StatelessWidget {
   const Authentication({
@@ -49,14 +54,15 @@ class Authentication extends StatelessWidget {
       case ApplicationLoginState.loggedOut:
         return Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 8),
-              child: StyledButton(
+            Expanded(
+              child: Center(
+                  child: RoundedLoadingButton(
+                child: Text('Log In', style: TextStyle(color: Colors.white)),
+                controller: _btnController,
                 onPressed: () {
                   startLoginFlow();
                 },
-                child: Text('Login'),
-              ),
+              )),
             ),
           ],
         );
@@ -413,17 +419,21 @@ class _PasswordFormState extends State<PasswordForm> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(width: 16),
-                      StyledButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            widget.login(
-                              _emailController.text,
-                              _passwordController.text,
-                            );
-                          }
-                        },
-                        child: Text('SIGN IN'),
-                      ),
+                      RoundedLoadingButton(
+                          controller: _btnController,
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Timer(Duration(seconds: 3), () {
+                                _btnController.success();
+                                widget.login(
+                                  _emailController.text,
+                                  _passwordController.text,
+                                );
+                              });
+                            }
+                          },
+                          child: Text('Log In',
+                              style: TextStyle(color: Colors.white))),
                       SizedBox(width: 30),
                     ],
                   ),
