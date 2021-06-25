@@ -86,7 +86,33 @@ class AvalonLocalizations {
       'nextQuest': 'Next quest',
       'startVote': 'Start voting'
     },
-    'he': {}
+    'he': {
+      'title': 'אבאלון',
+      'login': 'התחבר',
+      'enterAvalon': 'כניסה לאבאלון',
+      'welcomeAvalon': 'ברוכים הבאים לאבאלון',
+      'enterEmail': 'הכנס מייל',
+      'next': 'הבא',
+      'signWithEmail': 'התחבר באמצעות המייל',
+      'signIn': 'התחבר',
+      'password': 'סיסמא',
+      'enterFirst': 'נא להתחבר',
+      'logout': 'התנתק',
+      'createLobbby': 'צור לובי',
+      'enterLobbyNumber': 'הכנס מספר חדר',
+      'settings': 'הגדרות',
+      'exit': 'יציאה',
+      'hello': 'שלום',
+      'noSuchRoom': 'לא קיים חדר עם מספר זה',
+      'fullRoom': '!החדר מלא',
+      'players': 'שחקנים',
+      'numberOfPlayers': ':מספר שחקנים',
+      'startGame': 'התחל משחק',
+      'enterGame': 'היכנס למשחק',
+      'checkQuest': 'בדוק משימה',
+      'nextQuest': 'משימה הבאה',
+      'startVote': 'התחל הצבעה'
+    }
   };
 
   String get title {
