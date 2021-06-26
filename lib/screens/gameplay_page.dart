@@ -1,3 +1,4 @@
+import 'package:avalon/localization/Localizations.dart';
 import 'package:avalon/models/loyalties.dart';
 import 'package:avalon/models/player_model.dart';
 import 'package:avalon/models/votes_track.dart';
@@ -25,12 +26,16 @@ class _GameplayPage extends State<GameplayPage> {
               Consumer<RealTimeDataBase>(builder: (context, database, child) {
             if (database.gameSession!.ended) {
               if (database.gameSession!.wonTeam == Loyalty.mordred) {
-                return Center(child: Text('Mordred has won.'));
-              } else if (database.gameSession!.wonTeam == Loyalty.arthur) {
                 return Center(
                     child: Column(
                   children: [
-                    Text('Arthur has won.'),
+                    Text(AvalonLocalizations.of(context).mordredWon,
+                        style: TextStyle(
+                          fontSize: 30,
+                        )),
+                    ElevatedButton(
+                        onPressed: exitFromGame,
+                        child: Text(AvalonLocalizations.of(context).exit)),
                     Row(
                       children: [
                         for (var item in database.gameSession!.players!)
@@ -45,7 +50,32 @@ class _GameplayPage extends State<GameplayPage> {
                             )),
                           ])
                       ],
-                    )
+                    ),
+                  ],
+                ));
+              } else if (database.gameSession!.wonTeam == Loyalty.arthur) {
+                return Center(
+                    child: Column(
+                  children: [
+                    Text(AvalonLocalizations.of(context).arthurWon),
+                    ElevatedButton(
+                        onPressed: exitFromGame,
+                        child: Text(AvalonLocalizations.of(context).exit)),
+                    Row(
+                      children: [
+                        for (var item in database.gameSession!.players!)
+                          Column(children: [
+                            Text(item.name),
+                            Expanded(
+                                child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Image(
+                                image: AssetImage(item.character!.imagePath),
+                              ),
+                            )),
+                          ]),
+                      ],
+                    ),
                   ],
                 ));
               }
@@ -59,12 +89,14 @@ class _GameplayPage extends State<GameplayPage> {
                   children: [
                     Expanded(
                         flex: 2,
-                        child: Center(child: Text('Quests succeeded.'))),
+                        child: Center(
+                            child: Text(AvalonLocalizations.of(context)
+                                .questsSuccess))),
                     Expanded(
                         flex: 2,
                         child: Center(
-                            child:
-                                Text('Assassin can try guest who is Merlin.'))),
+                            child: Text(AvalonLocalizations.of(context)
+                                .assassinCanTry))),
                     Expanded(
                       flex: 6,
                       child: Row(
@@ -81,24 +113,30 @@ class _GameplayPage extends State<GameplayPage> {
                                             'Assassin' &&
                                         item.character!.loyalty ==
                                             Loyalty.mordred)
-                                      Expanded(
-                                          child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Image(
-                                          image: AssetImage(
-                                              item.character!.imagePath),
-                                        ),
-                                      )),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Expanded(
+                                            child: Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Image(
+                                            image: AssetImage(
+                                                item.character!.imagePath),
+                                          ),
+                                        )),
+                                      ),
                                     if (database.getPlayer().character!.name !=
                                         'Assassin')
-                                      Expanded(
-                                          child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Image(
-                                          image: AssetImage(
-                                              'assets/images/anonym.png'),
-                                        ),
-                                      )),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Expanded(
+                                            child: Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Image(
+                                            image: AssetImage(
+                                                'assets/images/anonym.png'),
+                                          ),
+                                        )),
+                                      ),
                                   ],
                                 ),
                                 onTap: database.getPlayer().character!.name ==
@@ -217,7 +255,8 @@ class _GameplayPage extends State<GameplayPage> {
                                 const EdgeInsets.only(left: 5.0, right: 5.0),
                             child: ElevatedButton(
                                 onPressed: () => startVoting(database),
-                                child: Text("Start Voting")),
+                                child: Text(
+                                    AvalonLocalizations.of(context).startVote)),
                           ),
                         ),
                       if (database.player!.isLeader)
@@ -227,7 +266,8 @@ class _GameplayPage extends State<GameplayPage> {
                                 const EdgeInsets.only(left: 5.0, right: 5.0),
                             child: ElevatedButton(
                                 onPressed: () => nextQuest(database),
-                                child: Text("Next Quest")),
+                                child: Text(
+                                    AvalonLocalizations.of(context).nextQuest)),
                           ),
                         ),
                       Expanded(
@@ -235,7 +275,8 @@ class _GameplayPage extends State<GameplayPage> {
                           padding: const EdgeInsets.only(left: 5.0, right: 5.0),
                           child: ElevatedButton(
                               onPressed: () => checkQuest(database, context),
-                              child: Text("Check quest")),
+                              child: Text(
+                                  AvalonLocalizations.of(context).checkQuest)),
                         ),
                       ),
                     ],
@@ -312,7 +353,7 @@ class _GameplayPage extends State<GameplayPage> {
             onPressed: () => Navigator.pop(context, 'Cancel'),
             child: Align(
               alignment: Alignment.bottomRight,
-              child: Text('Cancel'),
+              child: Text(AvalonLocalizations.of(context).cancel),
             ), // Need to change this~
           ),
         ],
@@ -323,4 +364,6 @@ class _GameplayPage extends State<GameplayPage> {
   choosePlayer(RealTimeDataBase database, Player item) {
     database.choosePlayer(item);
   }
+
+  void exitFromGame() {}
 }

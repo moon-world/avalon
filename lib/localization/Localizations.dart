@@ -57,7 +57,14 @@ class AvalonLocalizations {
       'enterGame': 'Enter game',
       'checkQuest': 'Check quest',
       'nextQuest': 'Next quest',
-      'startVote': 'Start voting'
+      'startVote': 'Start voting',
+      'mordredWon': 'Mordred has won!',
+      'arthurWon': 'Arthur has won!',
+      'lobbyNumber': 'Lobby number:',
+      'gameStarted': 'Game is started!',
+      'assassinCanTry': 'Assassin can try guess who is Merlin',
+      'questsSuccess': '3 quests succeedeed!',
+      'cancel': 'Cancel'
     },
     'ru': {
       'title': 'Авалон',
@@ -76,15 +83,22 @@ class AvalonLocalizations {
       'settings': 'Настройки',
       'exit': 'Выход',
       'hello': 'Привет',
-      'noSuchRoom': 'There is no room with number',
-      'fullRoom': 'The room is full!',
+      'noSuchRoom': 'Такой комнаты не существует',
+      'fullRoom': 'Комната полная!',
       'players': 'Игроки',
-      'numberOfPlayers': 'Number of players:',
+      'numberOfPlayers': 'Число игроков:',
       'startGame': 'Начать игру',
       'enterGame': 'Войти в игру',
-      'checkQuest': 'Check quest',
-      'nextQuest': 'Next quest',
-      'startVote': 'Start voting'
+      'checkQuest': 'Проверить квест',
+      'nextQuest': 'Следующий квест',
+      'startVote': 'Начать голосование',
+      'mordredWon': 'Mordred победил!',
+      'arthurWon': 'Arthur победил!',
+      'lobbyNumber': 'Номер комнаты:',
+      'gameStarted': 'Игра началась!',
+      'assassinCanTry': 'Assassin должен попытаться угадать кто Merlin',
+      'questsSuccess': 'Силы света победили в 3ех квестах!',
+      'cancel': 'Отмена'
     },
     'he': {
       'title': 'אבאלון',
@@ -111,9 +125,27 @@ class AvalonLocalizations {
       'enterGame': 'היכנס למשחק',
       'checkQuest': 'בדוק משימה',
       'nextQuest': 'משימה הבאה',
-      'startVote': 'התחל הצבעה'
+      'startVote': 'התחל הצבעה',
+      'mordredWon': '',
+      'arthurWon': '',
+      'lobbyNumber': 'מספר חדר',
+      'gameStarted': '',
+      'assassinCanTry': 'Assassin can try guess who is Merlin',
+      'questsSuccess': '3 quests succeedeed!',
+      'cancel': 'Cancel'
     }
   };
+  String get assassinCanTry {
+    return _localizedValues[locale.languageCode]!['assassinCanTry']!;
+  }
+
+  String get questsSuccess {
+    return _localizedValues[locale.languageCode]!['questsSuccess']!;
+  }
+
+  String get cancel {
+    return _localizedValues[locale.languageCode]!['cancel']!;
+  }
 
   String get title {
     return _localizedValues[locale.languageCode]!['title']!;
@@ -213,5 +245,21 @@ class AvalonLocalizations {
 
   String get startVote {
     return _localizedValues[locale.languageCode]!['startVote']!;
+  }
+
+  String get lobbyNumber {
+    return _localizedValues[locale.languageCode]!['lobbyNumber']!;
+  }
+
+  String get mordredWon {
+    return _localizedValues[locale.languageCode]!['mordredWon']!;
+  }
+
+  String get arthurWon {
+    return _localizedValues[locale.languageCode]!['arthurWon']!;
+  }
+
+  String get gameStarted {
+    return _localizedValues[locale.languageCode]!['gameStarted']!;
   }
 }

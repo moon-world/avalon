@@ -1,3 +1,4 @@
+import 'package:avalon/localization/Localizations.dart';
 import 'package:avalon/models/character.dart';
 import 'package:avalon/models/player_model.dart';
 import 'package:avalon/services/rt_database.dart';
@@ -80,7 +81,7 @@ class PlayersTable extends StatelessWidget {
       children: [
         Expanded(
           flex: 2,
-          child: Text("Players",
+          child: Text(AvalonLocalizations.of(context).players,
               style: TextStyle(
                   fontSize: 24.0,
                   fontFamily: 'CinzelDecorative',
@@ -152,7 +153,6 @@ class CharactersCarousel extends StatelessWidget {
                     icon: const Icon(Icons.add_circle_outline_sharp),
                     iconSize: 30,
                     color: Colors.blueAccent.shade100,
-                    tooltip: 'Enter Lobby',
                     onPressed: () {
                       addCharacter();
                     }),
@@ -160,7 +160,6 @@ class CharactersCarousel extends StatelessWidget {
                     icon: const Icon(Icons.remove_circle_outline),
                     iconSize: 30,
                     color: Colors.red.shade300,
-                    tooltip: 'Enter Lobby',
                     onPressed: () {
                       removeCharacter();
                     }),

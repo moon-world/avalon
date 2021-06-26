@@ -66,13 +66,13 @@ class _MainPage extends State<MainPage> {
                             validator: (value) {
                               return value!.isEmpty ? null : "Invalid";
                             },
-                            decoration:
-                                InputDecoration(hintText: "Enter Room Number"),
+                            decoration: InputDecoration(
+                                hintText: AvalonLocalizations.of(context)
+                                    .enterLobbyNumber),
                           ),
                         ),
                         IconButton(
                             icon: const Icon(Icons.forward),
-                            tooltip: 'Enter Lobby',
                             onPressed: () {
                               enterLobby();
                             }),
@@ -84,7 +84,7 @@ class _MainPage extends State<MainPage> {
                       style: ElevatedButton.styleFrom(
                           primary: Colors.cyan.shade400,
                           minimumSize: Size(250.0, 50.0)),
-                      child: Text("Settings"),
+                      child: Text(AvalonLocalizations.of(context).settings),
                       onPressed: () {
                         Navigator.pushNamed(context, '/settings');
                       }),
@@ -95,7 +95,7 @@ class _MainPage extends State<MainPage> {
                       style: ElevatedButton.styleFrom(
                           primary: Colors.cyan.shade400,
                           minimumSize: Size(250.0, 50.0)),
-                      child: Text("Exit"),
+                      child: Text(AvalonLocalizations.of(context).exit),
                       onPressed: () {
                         Navigator.pushNamed(context, '/');
                       }),
@@ -168,7 +168,7 @@ class EnterLobbyPopup extends StatelessWidget {
     switch (lobbyState) {
       case LobbyState.maxPlayers:
         return AlertDialog(
-          title: const Text('Lobby is full!'),
+          title: Text(AvalonLocalizations.of(context).fullRoom),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context, 'Cancel'),
@@ -181,7 +181,7 @@ class EnterLobbyPopup extends StatelessWidget {
         );
       case LobbyState.notExist:
         return AlertDialog(
-          title: const Text('Lobby does not exist!'),
+          title: Text(AvalonLocalizations.of(context).noSuchRoom),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context, 'Cancel'),
@@ -194,7 +194,7 @@ class EnterLobbyPopup extends StatelessWidget {
         );
       case LobbyState.started:
         return AlertDialog(
-          title: const Text('Game is started!'),
+          title: Text(AvalonLocalizations.of(context).gameStarted),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context, 'Cancel'),

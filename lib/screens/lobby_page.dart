@@ -1,3 +1,4 @@
+import 'package:avalon/localization/Localizations.dart';
 import 'package:avalon/models/application_state.dart';
 import 'package:avalon/models/game_session.dart';
 import 'package:avalon/services/rt_database.dart';
@@ -40,7 +41,7 @@ class _LobbyPageState extends State {
                         database.exitLobby(appState.player!);
                       }),
                   title: Text(
-                      "Lobby number : ${database.gameSession!.sessionId}")),
+                      "${AvalonLocalizations.of(context).lobbyNumber} ${database.gameSession!.sessionId}")),
               body: Container(
                 child: Column(
                   children: [
@@ -51,7 +52,7 @@ class _LobbyPageState extends State {
                           Expanded(
                             child: Center(
                               child: Text(
-                                "Number of players:",
+                                AvalonLocalizations.of(context).numberOfPlayers,
                                 style: TextStyle(fontSize: 20.0),
                               ),
                             ),
@@ -144,7 +145,8 @@ class _LobbyPageState extends State {
                                 ? null
                                 : () => startGame(database),
                             style: style,
-                            label: Text("Start Game"),
+                            label:
+                                Text(AvalonLocalizations.of(context).startGame),
                             icon: Icon(
                               Icons.play_arrow_rounded,
                             ),
@@ -160,7 +162,8 @@ class _LobbyPageState extends State {
                             onPressed: !database.gameSession!.started
                                 ? () => startGameAsGuest(database)
                                 : null,
-                            label: Text("Enter Game"),
+                            label:
+                                Text(AvalonLocalizations.of(context).enterGame),
                             style: style,
                             icon: Icon(
                               Icons.play_arrow_rounded,
