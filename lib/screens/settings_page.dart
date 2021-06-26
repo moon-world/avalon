@@ -1,3 +1,4 @@
+import 'package:avalon/localization/Localizations.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return SafeArea(
       child: Material(
         child: Scaffold(
-          appBar: AppBar(title: Text("Settings")),
+          appBar: AppBar(title: Text(AvalonLocalizations.of(context).settings)),
           body: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -36,7 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   onPressed: () {
                     print('Change Language');
                   },
-                  child: Text('Language'),
+                  child: Text(AvalonLocalizations.of(context).language),
                 ),
                 DropdownButton<String>(
                   value: dropDownValue,
@@ -71,9 +72,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       primary: Colors.cyan.shade400,
                       minimumSize: Size(250.0, 50.0)),
                   onPressed: () {
-                    print('About Avalon!');
+                    print('Developed by Anton Ruvinsky and Amit Dahari');
                   },
-                  child: Text('About'),
+                  child: Text(AvalonLocalizations.of(context).about),
                 )
               ]),
         ),

@@ -37,12 +37,14 @@ class AvalonLocalizations {
       'login': 'Log In',
       'enterAvalon': 'Enter Avalon',
       'welcomeAvalon': 'Welcome to Avalon',
+      'enterAccountName': 'Enter your account name',
       'enterEmail': 'Enter your email',
       'next': 'NEXT',
       'signWithEmail': 'Sign in with email',
       'signIn': 'Sign In',
       'password': 'Password',
       'enterFirst': 'Please log in first',
+      'enterYourPassword': 'Enter your password',
       'logout': 'LOGOUT',
       'createLobbby': 'Create Lobby',
       'enterLobbyNumber': 'Enter Room Number',
@@ -64,19 +66,27 @@ class AvalonLocalizations {
       'gameStarted': 'Game is started!',
       'assassinCanTry': 'Assassin can try guess who is Merlin',
       'questsSuccess': '3 quests succeedeed!',
-      'cancel': 'Cancel'
+      'cancel': 'Cancel',
+      'save': 'Save',
+      'lobyHasBeenClosed': 'Lobby has been closed',
+      'failedEnteringLobby': 'Failed entering lobby',
+      'language': 'Language',
+      'about': 'About',
+      'failedtocreateaccount': 'Failed to create account'
     },
     'ru': {
       'title': 'Авалон',
       'login': 'Войти',
       'enterAvalon': 'Войти в Авалон',
       'welcomeAvalon': 'Добро пожаловать в Авалон',
+      'enterAccountName': 'Введите имя вашей учетной записи',
       'enterEmail': 'Введите ваш мейл',
       'next': 'СЛЕДУЮЩИЙ',
       'signWithEmail': 'Войти с мейлом',
       'signIn': 'Войти в систему',
       'password': 'Пароль',
       'enterFirst': 'Пожалуйста войдите!',
+      'enterYourPassword': 'Введите свой пароль',
       'logout': 'ВЫХОД',
       'createLobbby': 'Создать комнату',
       'enterLobbyNumber': 'Введите номер комнаты',
@@ -98,19 +108,27 @@ class AvalonLocalizations {
       'gameStarted': 'Игра началась!',
       'assassinCanTry': 'Assassin должен попытаться угадать кто Merlin',
       'questsSuccess': 'Силы света победили в 3ех квестах!',
-      'cancel': 'Отмена'
+      'cancel': 'Отмена',
+      'save': '',
+      'lobyHasBeenClosed': 'Лобби было закрыто',
+      'failedEnteringLobby': 'Не удалось войти в лобби',
+      'language': 'Язык',
+      'about': 'О',
+      'failedtocreateaccount': 'Не удалось создать учетную запись'
     },
     'he': {
       'title': 'אבאלון',
       'login': 'התחבר',
       'enterAvalon': 'כניסה לאבאלון',
       'welcomeAvalon': 'ברוכים הבאים לאבאלון',
+      'enterAccountName': 'הזן את שם החשבון שלך',
       'enterEmail': 'הכנס מייל',
       'next': 'הבא',
       'signWithEmail': 'התחבר באמצעות המייל',
       'signIn': 'התחבר',
       'password': 'סיסמא',
       'enterFirst': 'נא להתחבר',
+      'enterYourPassword': 'הכנס את הסיסמה שלך',
       'logout': 'התנתק',
       'createLobbby': 'צור לובי',
       'enterLobbyNumber': 'הכנס מספר חדר',
@@ -132,9 +150,44 @@ class AvalonLocalizations {
       'gameStarted': '!המשחק התחיל',
       'assassinCanTry': '!המתנקש יכול לנסות לנחש מי הוא המרלין',
       'questsSuccess': '!3 משימות הצליחו',
-      'cancel': 'ביטול'
+      'cancel': 'ביטול',
+      'save': 'שמירה',
+      'lobyHasBeenClosed': 'הלובי נסגר',
+      'failedEnteringLobby': 'הכניסה ללובי נכשלה',
+      'language': 'שפה',
+      'about': 'אודות',
+      'failedtocreateaccount': 'כישלון בעת ניסיון יצירת משתמש'
     }
   };
+
+  String get about {
+    return _localizedValues[locale.languageCode]!['about']!;
+  }
+
+  String get language {
+    return _localizedValues[locale.languageCode]!['language']!;
+  }
+
+  String get failedEnteringLobby {
+    return _localizedValues[locale.languageCode]!['failedEnteringLobby']!;
+  }
+
+  String get lobyHasBeenClosed {
+    return _localizedValues[locale.languageCode]!['lobyHasBeenClosed']!;
+  }
+
+  String get save {
+    return _localizedValues[locale.languageCode]!['save']!;
+  }
+
+  String get enterYourPassword {
+    return _localizedValues[locale.languageCode]!['enterYourPassword']!;
+  }
+
+  String get enterAccountName {
+    return _localizedValues[locale.languageCode]!['enterAccountName']!;
+  }
+
   String get assassinCanTry {
     return _localizedValues[locale.languageCode]!['assassinCanTry']!;
   }
@@ -261,5 +314,9 @@ class AvalonLocalizations {
 
   String get gameStarted {
     return _localizedValues[locale.languageCode]!['gameStarted']!;
+  }
+
+  String get failedtocreateaccount {
+    return _localizedValues[locale.languageCode]!['failedtocreateaccount']!;
   }
 }

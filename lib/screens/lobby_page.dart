@@ -179,7 +179,8 @@ class _LobbyPageState extends State {
         );
       } else {
         return Container(
-          child: Center(child: Text('Lobby has been closed')),
+          child: Center(
+              child: Text(AvalonLocalizations.of(context).lobyHasBeenClosed)),
         );
       }
     });

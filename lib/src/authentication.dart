@@ -95,8 +95,8 @@ class Authentication extends StatelessWidget {
                 email,
                 displayName,
                 password,
-                (e) =>
-                    _showErrorDialog(context, 'Failed to create account', e));
+                (e) => _showErrorDialog(context,
+                    AvalonLocalizations.of(context).failedtocreateaccount, e));
           },
         );
       case ApplicationLoginState.loggedIn:
@@ -294,7 +294,8 @@ class _RegisterFormState extends State<RegisterForm> {
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Enter your account name';
+                              return AvalonLocalizations.of(context)
+                                  .enterAccountName;
                             }
                             return null;
                           },
@@ -312,7 +313,8 @@ class _RegisterFormState extends State<RegisterForm> {
                           obscureText: true,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Enter your password';
+                              return AvalonLocalizations.of(context)
+                                  .enterYourPassword;
                             }
                             return null;
                           },
@@ -341,7 +343,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             );
                           }
                         },
-                        child: Text('SAVE'),
+                        child: Text(AvalonLocalizations.of(context).save),
                       ),
                       SizedBox(width: 30),
                     ],
@@ -382,7 +384,7 @@ class _PasswordFormState extends State<PasswordForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Header('Sign in'),
+        Header(AvalonLocalizations.of(context).signIn),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(

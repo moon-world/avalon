@@ -203,7 +203,7 @@ class EnterLobbyPopup extends StatelessWidget {
         );
       default:
         return AlertDialog(
-          title: const Text('Failed entering lobby.'),
+          title: Text(AvalonLocalizations.of(context).failedEnteringLobby),
           actions: [
             TextButton(
                 onPressed: () => Navigator.pop(context), child: Text("Close")),
