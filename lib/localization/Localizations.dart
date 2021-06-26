@@ -72,6 +72,9 @@ class AvalonLocalizations {
       'failedEnteringLobby': 'Failed entering lobby',
       'language': 'Language',
       'about': 'About',
+      'nickname': 'NickName',
+      'invalidMail': 'Invalid email',
+      'failedtosignin': 'Failed to sign in',
       'failedtocreateaccount': 'Failed to create account'
     },
     'ru': {
@@ -114,6 +117,9 @@ class AvalonLocalizations {
       'failedEnteringLobby': 'Не удалось войти в лобби',
       'language': 'Язык',
       'about': 'О',
+      'nickname': 'прозвище',
+      'invalidMail': 'Неверный адрес электронной почты',
+      'failedtosignin': 'Не удалось войти',
       'failedtocreateaccount': 'Не удалось создать учетную запись'
     },
     'he': {
@@ -156,9 +162,23 @@ class AvalonLocalizations {
       'failedEnteringLobby': 'הכניסה ללובי נכשלה',
       'language': 'שפה',
       'about': 'אודות',
+      'nickname': 'שם חיבה',
+      'invalidMail': 'כתובת אימייל לא חוקית',
+      'failedtosignin': 'הכניסה נכשלה',
       'failedtocreateaccount': 'כישלון בעת ניסיון יצירת משתמש'
     }
   };
+
+String get invalidMail {
+    return _localizedValues[locale.languageCode]!['invalidMail']!;
+  }
+  String get failedtosignin {
+    return _localizedValues[locale.languageCode]!['failedtosignin']!;
+  }
+
+  String get nickname {
+    return _localizedValues[locale.languageCode]!['nickname']!;
+  }
 
   String get about {
     return _localizedValues[locale.languageCode]!['about']!;

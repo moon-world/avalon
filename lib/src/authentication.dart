@@ -71,13 +71,18 @@ class Authentication extends StatelessWidget {
       case ApplicationLoginState.emailAddress:
         return EmailForm(
             callback: (email) => verifyEmail(
-                email, (e) => _showErrorDialog(context, 'Invalid email', e)));
+                email,
+                (e) => _showErrorDialog(
+                    context, AvalonLocalizations.of(context).invalidMail, e)));
       case ApplicationLoginState.password:
         return PasswordForm(
           email: email!,
           login: (email, password) {
-            signInWithEmailAndPassword(email, password,
-                (e) => _showErrorDialog(context, 'Failed to sign in', e));
+            signInWithEmailAndPassword(
+                email,
+                password,
+                (e) => _showErrorDialog(context,
+                    AvalonLocalizations.of(context).failedtosignin, e));
           },
         );
       case ApplicationLoginState.register:
@@ -289,8 +294,8 @@ class _RegisterFormState extends State<RegisterForm> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
                           controller: _displayNameController,
-                          decoration: const InputDecoration(
-                            hintText: 'Nickname',
+                          decoration: InputDecoration(
+                            hintText: AvalonLocalizations.of(context).nickname,
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
