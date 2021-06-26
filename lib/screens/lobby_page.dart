@@ -160,8 +160,8 @@ class _LobbyPageState extends State {
                           padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                           child: ElevatedButton.icon(
                             onPressed: !database.gameSession!.started
-                                ? () => startGameAsGuest(database)
-                                : null,
+                                ? null
+                                : () => startGameAsGuest(database),
                             label:
                                 Text(AvalonLocalizations.of(context).enterGame),
                             style: style,
