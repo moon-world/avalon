@@ -126,13 +126,13 @@ class AvalonLocalizations {
       'checkQuest': 'בדוק משימה',
       'nextQuest': 'משימה הבאה',
       'startVote': 'התחל הצבעה',
-      'mordredWon': '',
-      'arthurWon': '',
+      'mordredWon': '!מורדר ניצח',
+      'arthurWon': '!ארטור ניצח',
       'lobbyNumber': 'מספר חדר',
-      'gameStarted': '',
-      'assassinCanTry': 'Assassin can try guess who is Merlin',
-      'questsSuccess': '3 quests succeedeed!',
-      'cancel': 'Cancel'
+      'gameStarted': '!המשחק התחיל',
+      'assassinCanTry': '!המתנקש יכול לנסות לנחש מי הוא המרלין',
+      'questsSuccess': '!3 משימות הצליחו',
+      'cancel': 'ביטול'
     }
   };
   String get assassinCanTry {
