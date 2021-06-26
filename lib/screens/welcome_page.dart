@@ -1,3 +1,4 @@
+import 'package:avalon/localization/Localizations.dart';
 import 'package:avalon/models/application_state.dart';
 import 'package:avalon/models/player_model.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     appState = context.watch<ApplicationState>();
     _isDisabled = !appState.loggedIn;
-   
+
     return Material(
       child: Container(
         child: Column(
@@ -48,7 +49,6 @@ class _WelcomePageState extends State<WelcomePage> {
                   registerAccount: appState.registerAccount,
                   signOut: appState.signOut,
                 ),
-                
               ),
             ),
             Padding(
@@ -57,8 +57,12 @@ class _WelcomePageState extends State<WelcomePage> {
               child: ElevatedButton(
                 onPressed: _isDisabled ? null : _navigate,
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.teal, minimumSize: Size(250.0, 50.0)),
-                child: Text("Enter Avalon"),
+                    primary: Colors.blueAccent.shade100,
+                    minimumSize: Size(250.0, 50.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                    )),
+                child: Text(AvalonLocalizations.of(context).enterAvalon),
               ),
             ),
           ],
@@ -78,7 +82,6 @@ class _WelcomePageState extends State<WelcomePage> {
                 elevation: 24.0,
                 backgroundColor: Colors.blue,
               ));
-      
     } else {
       appState.player = new Player(appState.userName!, appState.email!);
       Navigator.pushNamed(context, '/main');

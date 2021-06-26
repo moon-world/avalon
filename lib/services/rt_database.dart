@@ -120,10 +120,15 @@ class RealTimeDataBase extends ChangeNotifier {
     _gameSessionSubscription =
         _gameSessionReference.onValue.listen((Event event) {
       _error = null;
-      var valueOfSession = new Map<String, dynamic>.from(event.snapshot.value);
-      var mappedValue = new Map<String, dynamic>.from(valueOfSession);
-      gameSession = GameSession.fromJson(mappedValue);
-      notifyListeners();
+      try {
+        var valueOfSession =
+            new Map<String, dynamic>.from(event.snapshot.value);
+        var mappedValue = new Map<String, dynamic>.from(valueOfSession);
+        gameSession = GameSession.fromJson(mappedValue);
+        notifyListeners();
+      } catch (e) {
+        gameSession = null;
+      }
     }, onError: (Object o) {
       final DatabaseError error = o as DatabaseError;
       _error = error;
@@ -519,5 +524,17 @@ class RealTimeDataBase extends ChangeNotifier {
     }
 
     updateGameSession();
+  }
+
+  void exitFromGame() {
+    for (var _player in gameSession!.players!) {
+      gameSession!.players!.remove(_player);
+      unSubscribeFromGameChanges();
+      _gameSessionReference.remove();
+      gameSession = null;
+    }
+    if (player!.isLeader) {
+      _gameSessionReference.remove();
+    }
   }
 }

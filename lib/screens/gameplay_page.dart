@@ -34,7 +34,7 @@ class _GameplayPage extends State<GameplayPage> {
                           fontSize: 30,
                         )),
                     ElevatedButton(
-                        onPressed: exitFromGame,
+                        onPressed: () => exitFromGame(database),
                         child: Text(AvalonLocalizations.of(context).exit)),
                     Row(
                       children: [
@@ -59,7 +59,7 @@ class _GameplayPage extends State<GameplayPage> {
                   children: [
                     Text(AvalonLocalizations.of(context).arthurWon),
                     ElevatedButton(
-                        onPressed: exitFromGame,
+                        onPressed: () => exitFromGame(database),
                         child: Text(AvalonLocalizations.of(context).exit)),
                     Row(
                       children: [
@@ -365,5 +365,8 @@ class _GameplayPage extends State<GameplayPage> {
     database.choosePlayer(item);
   }
 
-  void exitFromGame() {}
+  void exitFromGame(RealTimeDataBase database) {
+    database.exitFromGame();
+    Navigator.pushNamed(context, '/main');
+  }
 }

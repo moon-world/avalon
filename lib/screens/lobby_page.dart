@@ -178,7 +178,9 @@ class _LobbyPageState extends State {
           ),
         );
       } else {
-        return Container();
+        return Container(
+          child: Center(child: Text('Lobby has been closed')),
+        );
       }
     });
   }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:avalon/localization/Localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -57,7 +58,8 @@ class Authentication extends StatelessWidget {
             Expanded(
               child: Center(
                   child: RoundedLoadingButton(
-                child: Text('Log In', style: TextStyle(color: Colors.white)),
+                child: Text(AvalonLocalizations.of(context).login,
+                    style: TextStyle(color: Colors.white)),
                 controller: _btnController,
                 onPressed: () {
                   startLoginFlow();
@@ -101,24 +103,20 @@ class Authentication extends StatelessWidget {
         return Row(
           children: [
             Expanded(
-              child: 
-Center(
-                child: ElevatedButton(
-              onPressed: () {
-                signOut();
-              },
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.teal, minimumSize: Size(250.0, 50.0)),
-              child: Text("Log Out"),
-            )), )
-
-            //   child: StyledButton(
-            //     onPressed: () {
-            //       signOut();
-            //     },
-            //     child: Text('LOGOUT'),
-            //   ),
-            // ),
+              child: Center(
+                  child: ElevatedButton(
+                onPressed: () {
+                  signOut();
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blueAccent.shade100,
+                    minimumSize: Size(250.0, 50.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                    )),
+                child: Text(AvalonLocalizations.of(context).logout),
+              )),
+            )
           ],
         );
       default:
@@ -181,7 +179,7 @@ class _EmailFormState extends State<EmailForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Header('Sign in with email'),
+        Header(AvalonLocalizations.of(context).signWithEmail),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
@@ -193,12 +191,12 @@ class _EmailFormState extends State<EmailForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
                     controller: _controller,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email',
+                    decoration: InputDecoration(
+                      hintText: AvalonLocalizations.of(context).enterEmail,
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter your email address to continue';
+                        return AvalonLocalizations.of(context).enterEmail;
                       }
                       return null;
                     },
@@ -216,7 +214,7 @@ class _EmailFormState extends State<EmailForm> {
                             widget.callback(_controller.text);
                           }
                         },
-                        child: Text('NEXT'),
+                        child: Text(AvalonLocalizations.of(context).next),
                       ),
                     ),
                   ],
@@ -272,12 +270,12 @@ class _RegisterFormState extends State<RegisterForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email',
+                    decoration: InputDecoration(
+                      hintText: AvalonLocalizations.of(context).enterEmail,
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter your email address to continue';
+                        return AvalonLocalizations.of(context).enterEmail;
                       }
                       return null;
                     },
@@ -308,8 +306,8 @@ class _RegisterFormState extends State<RegisterForm> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
                           controller: _passwordController,
-                          decoration: const InputDecoration(
-                            hintText: 'Password',
+                          decoration: InputDecoration(
+                            hintText: AvalonLocalizations.of(context).password,
                           ),
                           obscureText: true,
                           validator: (value) {
@@ -330,7 +328,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     children: [
                       TextButton(
                         onPressed: widget.cancel,
-                        child: Text('CANCEL'),
+                        child: Text(AvalonLocalizations.of(context).cancel),
                       ),
                       SizedBox(width: 16),
                       StyledButton(
@@ -396,12 +394,12 @@ class _PasswordFormState extends State<PasswordForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email',
+                    decoration: InputDecoration(
+                      hintText: AvalonLocalizations.of(context).enterEmail,
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter your email address to continue';
+                        return AvalonLocalizations.of(context).enterEmail;
                       }
                       return null;
                     },
@@ -411,41 +409,36 @@ class _PasswordFormState extends State<PasswordForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(
-                      hintText: 'Password',
+                    decoration: InputDecoration(
+                      hintText: AvalonLocalizations.of(context).password,
                     ),
                     obscureText: true,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Enter your password';
+                        return AvalonLocalizations.of(context).password;
                       }
                       return null;
                     },
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(width: 16),
-                      RoundedLoadingButton(
-                          controller: _btnController,
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              Timer(Duration(seconds: 3), () {
-                                _btnController.success();
-                                widget.login(
-                                  _emailController.text,
-                                  _passwordController.text,
-                                );
-                              });
-                            }
-                          },
-                          child: Text('Log In',
-                              style: TextStyle(color: Colors.white))),
-                      SizedBox(width: 30),
-                    ],
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Center(
+                    child: RoundedLoadingButton(
+                        controller: _btnController,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Timer(Duration(seconds: 3), () {
+                              _btnController.success();
+                              widget.login(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                            });
+                          }
+                        },
+                        child: Text(AvalonLocalizations.of(context).login,
+                            style: TextStyle(color: Colors.white))),
                   ),
                 ),
               ],

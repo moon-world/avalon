@@ -14,6 +14,12 @@ class _MainPage extends State<MainPage> {
   final TextEditingController _textEditController = TextEditingController();
   late RealTimeDataBase database;
   late ApplicationState appState;
+  final ButtonStyle buttonsStyle = ElevatedButton.styleFrom(
+      primary: Colors.blueAccent.shade100,
+      minimumSize: Size(250.0, 50.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25.0),
+      ));
   @override
   Widget build(BuildContext context) {
     appState = context.watch<ApplicationState>();
@@ -41,13 +47,7 @@ class _MainPage extends State<MainPage> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.cyan.shade400,
-                      minimumSize: Size(250.0, 50.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                    ),
+                    style: buttonsStyle,
                     child: Text(AvalonLocalizations.of(context).createLobbby),
                     onPressed: () {
                       createLobby();
@@ -81,9 +81,7 @@ class _MainPage extends State<MainPage> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.cyan.shade400,
-                          minimumSize: Size(250.0, 50.0)),
+                      style: buttonsStyle,
                       child: Text(AvalonLocalizations.of(context).settings),
                       onPressed: () {
                         Navigator.pushNamed(context, '/settings');
@@ -92,9 +90,7 @@ class _MainPage extends State<MainPage> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.cyan.shade400,
-                          minimumSize: Size(250.0, 50.0)),
+                      style: buttonsStyle,
                       child: Text(AvalonLocalizations.of(context).exit),
                       onPressed: () {
                         Navigator.pushNamed(context, '/');
