@@ -7,7 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import './screens/main_page.dart';
-import './screens/settings_page.dart';
 import './screens/lobby_page.dart';
 import 'package:provider/provider.dart';
 import 'localization/Localizations.dart';
@@ -42,7 +41,6 @@ class AvalonApp extends StatelessWidget {
         '/': (context) => WelcomePage(),
         '/main': (context) => MainPage(),
         '/lobby': (context) => LobbyPage(),
-        '/settings': (context) => SettingsPage(),
         '/gameplay': (context) => GameplayPage()
       }),
     );

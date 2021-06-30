@@ -82,18 +82,37 @@ class _MainPage extends State<MainPage> {
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
                       style: buttonsStyle,
-                      child: Text(AvalonLocalizations.of(context).settings),
+                      child: Text(AvalonLocalizations.of(context).exit),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/settings');
+                        Navigator.pushNamed(context, '/');
                       }),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
                       style: buttonsStyle,
-                      child: Text(AvalonLocalizations.of(context).exit),
+                      child: Text(AvalonLocalizations.of(context).about),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/');
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancel'),
+                                child: Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Text('Cancel'),
+                                ), // Need to change this~
+                              ),
+                            ],
+                            title: Text(
+                              AvalonLocalizations.of(context).about,
+                            ),
+                            content: Text(
+                                "Developed by Anton Ruvinsky and Amit Dahari"),
+                          ),
+                        );
                       }),
                 ),
               ],

@@ -105,13 +105,19 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   void exitLobby(Player player) {
-    for (var _player in gameSession!.players!) {
-      if (_player.mail == player.mail) {
-        gameSession!.players!.remove(_player);
-        unSubscribeFromGameChanges();
-        updateGameSession();
-        gameSession = null;
-        break;
+    if (player.isLeader) {
+      unSubscribeFromGameChanges();
+      _gameSessionReference.remove();
+      gameSession = null;
+    } else {
+      for (var _player in gameSession!.players!) {
+        if (_player.mail == player.mail) {
+          gameSession!.players!.remove(_player);
+          unSubscribeFromGameChanges();
+          updateGameSession();
+          gameSession = null;
+          break;
+        }
       }
     }
   }
@@ -536,5 +542,14 @@ class RealTimeDataBase extends ChangeNotifier {
     if (player!.isLeader) {
       _gameSessionReference.remove();
     }
+  }
+
+  bool isLeaderInLobby() {
+    for (var _player in gameSession!.players!) {
+      if (_player.isLeader) {
+        return true;
+      }
+    }
+    return false;
   }
 }

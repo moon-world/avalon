@@ -28,7 +28,7 @@ class _LobbyPageState extends State {
     appState = context.watch<ApplicationState>();
     //dropdownValue = database.gameSession!.numberOfPlayers;
     return Consumer<RealTimeDataBase>(builder: (context, database, child) {
-      if (database.gameSession != null) {
+      if (database.gameSession != null && database.isLeaderInLobby()) {
         return SafeArea(
           child: Material(
             child: Scaffold(
@@ -178,9 +178,24 @@ class _LobbyPageState extends State {
           ),
         );
       } else {
-        return Container(
-          child: Center(
-              child: Text(AvalonLocalizations.of(context).lobyHasBeenClosed)),
+        return SafeArea(
+          child: Material(
+            child: Scaffold(
+              appBar: AppBar(
+                leading: IconButton(
+                    icon: Icon(Icons.keyboard_arrow_left, color: Colors.white),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      database.exitLobby(appState.player!);
+                    }),
+              ),
+              body: Container(
+                child: Center(
+                    child: Text(
+                        AvalonLocalizations.of(context).lobyHasBeenClosed)),
+              ),
+            ),
+          ),
         );
       }
     });
