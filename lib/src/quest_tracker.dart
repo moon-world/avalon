@@ -24,7 +24,20 @@ class QuestTracker extends StatelessWidget {
                 builder: (BuildContext context) {
                   return Column(
                     children: [
-                      if (!e.finished)
+                      if (!e.finished && database.isThisQuestStarted(e))
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.fitWidth,
+                              image:
+                                  AssetImage('assets/images/current_quest.png'),
+                            ),
+                          ),
+                        ),
+                      if (!e.finished && !database.isThisQuestStarted(e))
                         Container(
                           width: 100,
                           height: 100,

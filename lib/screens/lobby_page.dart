@@ -142,7 +142,7 @@ class _LobbyPageState extends State {
                           padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                           child: ElevatedButton.icon(
                             onPressed: !database.gameIsReady()
-                                ? null
+                                ? () => startGame(database)
                                 : () => startGame(database),
                             style: style,
                             label:
