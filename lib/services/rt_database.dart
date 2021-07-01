@@ -15,8 +15,8 @@ import 'dart:convert';
 
 final databaseReference = FirebaseDatabase.instance.reference();
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-const debugChars =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoprqrstuvwxyz0123456789';
+// const debugChars =
+//     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoprqrstuvwxyz0123456789';
 
 class RealTimeDataBase extends ChangeNotifier {
   RealTimeDataBase() {
@@ -195,7 +195,7 @@ class RealTimeDataBase extends ChangeNotifier {
   }
 
   startGame() {
-    debugCreateGame(); // only for debugging
+    //debugCreateGame(); // only for debugging
     gameSession!.characters!.shuffle();
     gameSession!.players!.shuffle();
     for (var i = 0; i < gameSession!.players!.length; i++) {
@@ -274,19 +274,19 @@ class RealTimeDataBase extends ChangeNotifier {
     return quest;
   }
 
-  debugCreateGame() {
-    for (var i = 1; i < gameSession!.numberOfPlayers; i++) {
-      gameSession!.players!
-          .add(new Player(debugRandom(6), "${debugRandom(4)}@mama.co.il"));
-    }
-  }
+  // debugCreateGame() {
+  //   for (var i = 1; i < gameSession!.numberOfPlayers; i++) {
+  //     gameSession!.players!
+  //         .add(new Player(debugRandom(6), "${debugRandom(4)}@mama.co.il"));
+  //   }
+  // }
 
-  String debugRandom(int length) {
-    Random rnd = Random();
+  // String debugRandom(int length) {
+  //   Random rnd = Random();
 
-    return String.fromCharCodes(Iterable.generate(
-        length, (_) => debugChars.codeUnitAt(rnd.nextInt(debugChars.length))));
-  }
+  //   return String.fromCharCodes(Iterable.generate(
+  //       length, (_) => debugChars.codeUnitAt(rnd.nextInt(debugChars.length))));
+  // }
 
   void selectPlayer(Player player) {
     var numberOfPlayersWithToken =
@@ -399,7 +399,6 @@ class RealTimeDataBase extends ChangeNotifier {
       getCurrentVotesTrack().checkVotingFailed(needForRejection!);
       entered = true;
 
-      var currentVoteNumber = getCurrentVotesTrack().voteNumber;
       if (getCurrentVotesTrack().voteFailed) {
         if (getCurrentVotesTrack().voteNumber == 5) {
           //fail the quest
